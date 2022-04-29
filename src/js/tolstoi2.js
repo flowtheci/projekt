@@ -2,6 +2,7 @@ const entranceImage = 'assets/Tolstoi/2.korrus/temp.jpg'
 const entrancePano = new PANOLENS.ImagePanorama(entranceImage)
 const viewer = new PANOLENS.Viewer({
     output: 'console',
+    momentum: false,
 });
 
 infospot2 = new PANOLENS.Infospot();

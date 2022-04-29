@@ -222,6 +222,7 @@ room117.addEventListener('enter-fade-start', () => {
 // first added panorama is tour start point
 const viewer = new PANOLENS.Viewer({
     output: 'console',
+    momentum: false,
 });
 
 
