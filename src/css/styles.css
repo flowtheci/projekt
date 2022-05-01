@@ -19,7 +19,7 @@ html, body {
     color: #fff;
   }
 
-  #desc-container {
+  .infospot {
     max-width: 500px;
     max-height: 500px;
     min-width: 200px;
@@ -32,7 +32,7 @@ html, body {
     -webkit-overflow-scrolling: touch;
   }
 
-  #desc-container > iframe {
+  .infospot > iframe {
     border: none;
     width:100%;
   }
