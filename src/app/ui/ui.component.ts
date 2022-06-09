@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UiComponent implements OnInit {
 
+  showBuildingPicker = false;
+
   constructor() { }
 
   ngOnInit(): void {
   }
+
+  enterVirtualTour() {
+    this.showBuildingPicker = !this.showBuildingPicker;
+  }
+  
 
 }

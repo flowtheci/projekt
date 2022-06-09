@@ -1,1 +1,36 @@
-<p>ui works!</p>
+<div class="language-picker"></div>
+<div *ngIf="!showBuildingPicker" class="main-menu">
+    <img class="logo" src="/assets/pallas-logo.jpg"/>
+    <button mat-button class="menu-button">Sisseastumine</button>
+    <button mat-button class="menu-button">Õpingud</button>
+    <button mat-button class="menu-button" (click)="enterVirtualTour()">Virtuaaltuur</button>
+</div>
+<div *ngIf="showBuildingPicker" class="building-picker">
+    <h1 class="title-text">Vali hoone:</h1>
+    <div class="building-choice">
+        <mat-card class="building-card">
+            <mat-card-title >Tolstoi</mat-card-title>
+            <mat-card-subtitle>Pallase kunstikooli peahoone</mat-card-subtitle>
+            <img mat-card-image class="card-image" src="./assets/tolstoi-cover-1.jpg" alt="Pallase kunstikooli Tolstoi hoone">
+            <mat-card-actions>
+              <button mat-raised-button color="warn" routerLink="/tolstoi-1-korrus" routerLinkActive="active">SISENE</button>
+            </mat-card-actions>
+        </mat-card>
+        <mat-card class="building-card">
+            <mat-card-title >2. hoone</mat-card-title>
+            <mat-card-subtitle>Pallase kunstikooli kõrvalhoone</mat-card-subtitle>
+            <img mat-card-image class="card-image" src="./assets/temp-cover-1.jpg" alt="Pallase kunstikooli 2. hoone">
+            <mat-card-actions>
+              <button mat-raised-button color="warn">SISENE</button>
+            </mat-card-actions>
+        </mat-card>
+        <mat-card class="building-card">
+            <mat-card-title >3. hoone</mat-card-title>
+            <mat-card-subtitle>Pallase kunstikooli kõrvalhoone</mat-card-subtitle>
+            <img mat-card-image class="card-image" src="./assets/temp-cover-2.jpg" alt="Pallase kunstikooli 3. hoone">
+            <mat-card-actions>
+              <button mat-raised-button color="warn">SISENE</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
