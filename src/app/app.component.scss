@@ -1,0 +1,47 @@
+
+html, body {
+  margin: 0;
+  width: 99%;
+  height: 99%;
+  background-color: #000;
+}
+
+a:link, a:visited{
+  color: #bdc3c7;
+}
+
+.credit{
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  padding: 20px 0;
+  color: #fff;
+}
+
+.infospot {
+  max-width: 500px;
+  max-height: 500px;
+  min-width: 200px;
+  min-height: 250px;
+  background: #fff;
+  opacity: 0.75;
+  color: #000;
+  border-radius: 3px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.infospot > iframe {
+  border: none;
+  width:100%;
+}
+
+.title {
+  font-size: 1.5em;
+  text-align: center;
+  padding: 5px;
+}
+
+.text {
+  padding: 0 20px 20px 20px;
+}
