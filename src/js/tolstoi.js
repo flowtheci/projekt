@@ -7,6 +7,8 @@ const lobbyImage2 = 'assets/Tolstoi/1.korrus/fuajee2.jpg'
 const lobbyImage3 = 'assets/Tolstoi/1.korrus/fuajee3.jpg'
 const lobbyImage4 = 'assets/Tolstoi/1.korrus/fuajee4.jpg'
 const lobbyImage5 = 'assets/Tolstoi/1.korrus/fuajee5.jpg'
+//
+const stairsimage = 'assets/Tolstoi/1.korrus/3_1_fuajee trepid üles-Edit-min.jpg'
 const galleryImage1 = 'assets/Tolstoi/1.korrus/galerii1.jpg'
 const galleryImage2 = 'assets/Tolstoi/1.korrus/galerii2.jpg'
 const room123Image1 = 'assets/Tolstoi/1.korrus/123_1.jpg'
@@ -52,6 +54,8 @@ const lobbyPano2 = new PANOLENS.ImagePanorama(lobbyImage2)
 const lobbyPano3 = new PANOLENS.ImagePanorama(lobbyImage3)
 const lobbyPano4 = new PANOLENS.ImagePanorama(lobbyImage4)
 const lobbyPano5 = new PANOLENS.ImagePanorama(lobbyImage5)
+//
+const stairsPano1 = new PANOLENS.ImagePanorama(stairsimage)
 const gallery1 = new PANOLENS.ImagePanorama(galleryImage1)
 const gallery2 = new PANOLENS.ImagePanorama(galleryImage2)
 const room123Pano1 = new PANOLENS.ImagePanorama(room123Image1)
@@ -88,132 +92,226 @@ const room111Pano1 = new PANOLENS.ImagePanorama(room111Image1)
 const room111Pano2 = new PANOLENS.ImagePanorama(room111Image2)
 const room117 = new PANOLENS.ImagePanorama(room117Image)
 
+var lookAtPositions = [
+  new THREE.Vector3(-4951.39, -90.62, -633.92 ),//0, entrancePano
+  new THREE.Vector3(-3747.27, 621.81, -3239.13 ),//1 entranceStreet
+  new THREE.Vector3(2802.99, -32.10, 4131.86 ),//2 lobbyPano1
+  new THREE.Vector3(-4486.25, -444.16, -2146.18 ),//3 lobbyPano2
+  new THREE.Vector3(4796.15, -355.60, -1338.65 ),//4 lobbyPano3
+  new THREE.Vector3(-2178.40, 94.75, 4489.82 ),//5 lobbyPano4
+  new THREE.Vector3(2698.74, -813.70, -4120.30 ),//6 lobbyPano5
+  new THREE.Vector3(-956.27, -403.76, -4886.97 ),//7 stairsPano1
+  new THREE.Vector3(3917.29, -104.19, -3090.25),//8 gallery1
+  new THREE.Vector3(1615.18, -123.77, -4723.17 ),//9 gallery2
+  new THREE.Vector3(-4909.76, -547.95, 703.48 ),//10 room123pano1
+  new THREE.Vector3(1675.72, -1110.17, 4569.50 ),//11 room123pano2
+  new THREE.Vector3(2922.94, -236.15, -4044.42 ),//12 canteen1
+  new THREE.Vector3(-1040.52, -508.69, 4860.30 ),//13 canteen2
+  new THREE.Vector3(-4104.58, -1116.70, -2612.44 ),//14 library1
+  new THREE.Vector3(3978.56, -2702.49, -1347.76 ),//15 library2
+  new THREE.Vector3(3205.31, -272.93, -3815.59 ),//16 library3
+  new THREE.Vector3(2802.99, -32.10, 4131.86 ),//17 library4
+  new THREE.Vector3(-4908.74, -257.19, -861.38 ),//18 library5
+  new THREE.Vector3(4283.69, -0.16, 2571.50 ),//19 libraryseminar
+  new THREE.Vector3(2802.99, -32.10, 4131.86 ),//20 hall1
+  new THREE.Vector3(2686.96, -1117.67, -4055.95 ),//21 hall2
+  new THREE.Vector3(4721.65, -1572.98, 445.34 ),//22 room106
+  new THREE.Vector3(-4284.81, -287.08, 2549.10 ),//23 room107
+  new THREE.Vector3(4455.26, 242.55, -2233.44 ),//24 room109
+  new THREE.Vector3(362.35, -496.98, -4953.21 ),//25 room114refurb
+  new THREE.Vector3(-4017.16, -649.68, 2897.80 ),//26 room112corridor
+  new THREE.Vector3(-4975.70, 431.09, 81.88 ),//27 room112Pano1
+  new THREE.Vector3(-4784.42, -338.30, 1385.07 ),//28 room112pano2
+  new THREE.Vector3(-636.68, -950.72, 4858.41 ),//29 room112closet
+  new THREE.Vector3(4967.20, -387.72, -335.15 ),//30 room112entrance
+  new THREE.Vector3(1393.18, -381.55, 4780.49 ),//31 wetlab
+  new THREE.Vector3(-3261.28, -847.36, 3688.28 ),//32 room114corridor
+  new THREE.Vector3(4885.78, -271.35, -1002.79 ),//33 room114corridor2
+  new THREE.Vector3(4976.74, -327.66, -198.09 ),//34 room114corridor3
+  new THREE.Vector3(4574.39, -272.16, 1986.53 ),//35 corridor1
+  new THREE.Vector3(-4636.00, -1053.32, 1534.00),//36 corridor2
+  new THREE.Vector3(-4911.08, 208.11, -858.90 ),//37 room110
+  new THREE.Vector3(-3148.70, -2030.31, -3299.06 ),//38 room114
+  new THREE.Vector3(-4689.89, -607.63, 1601.47 ),//39 room118
+  new THREE.Vector3(4972.69, -269.94, -318.82 ),//40 room111pano1
+  new THREE.Vector3(3392.64, 289.56, -3652.67 ),//41 room111pano2
+  new THREE.Vector3(4217.34, 135.92, -2663.88 ),//42 room117
+
+  ];
+
 // Add console log event listeners for every panorama object
 entrancePano.addEventListener('enter-fade-start', () => {
   console.log('entrancePano entered')
+  viewer.tweenControlCenter( lookAtPositions[0], 6000 );
 })
 entranceStreet.addEventListener('enter-fade-start', () => {
   console.log('entranceStreet entered')
+  viewer.tweenControlCenter( lookAtPositions[1], 0);
 })
 lobbyPano1.addEventListener('enter-fade-start', () => {
   console.log('lobbyPano1 entered')
+  viewer.tweenControlCenter( lookAtPositions[2], 0 );
 })
 lobbyPano2.addEventListener('enter-fade-start', () => {
   console.log('lobbyPano2 entered')
+  viewer.tweenControlCenter( lookAtPositions[3], 0 );
 })
 lobbyPano3.addEventListener('enter-fade-start', () => {
   console.log('lobbyPano3 entered')
+  viewer.tweenControlCenter( lookAtPositions[4], 0 );
 })
 lobbyPano4.addEventListener('enter-fade-start', () => {
   console.log('lobbyPano4 entered')
+  viewer.tweenControlCenter( lookAtPositions[5], 0 );
 })
 lobbyPano5.addEventListener('enter-fade-start', () => {
   console.log('lobbyPano5 entered')
+  viewer.tweenControlCenter( lookAtPositions[6], 0 );
+})
+//
+stairsPano1.addEventListener('enter-fade-start', () => {
+  console.log('stairsPano1 entered')
+  viewer.tweenControlCenter( lookAtPositions[7], 0 );
 })
 gallery1.addEventListener('enter-fade-start', () => {
   console.log('gallery1 entered')
+  viewer.tweenControlCenter( lookAtPositions[8], 0 );
 })
 gallery2.addEventListener('enter-fade-start', () => {
   console.log('gallery2 entered')
+  viewer.tweenControlCenter( lookAtPositions[9], 0 );
 })
 room123Pano1.addEventListener('enter-fade-start', () => {
   console.log('room123Pano1 entered')
+  viewer.tweenControlCenter( lookAtPositions[10], 0 );
 })
 room123Pano2.addEventListener('enter-fade-start', () => {
   console.log('room123Pano2 entered')
+  viewer.tweenControlCenter( lookAtPositions[11], 0 );
 })
 canteen1.addEventListener('enter-fade-start', () => {
   console.log('canteen1 entered')
+  viewer.tweenControlCenter( lookAtPositions[12], 0 );
 })
 canteen2.addEventListener('enter-fade-start', () => {
   console.log('canteen2 entered')
+  viewer.tweenControlCenter( lookAtPositions[13], 0 );
 })
 library1.addEventListener('enter-fade-start', () => {
   console.log('library1 entered')
+  viewer.tweenControlCenter( lookAtPositions[14], 0 );
 })
 library2.addEventListener('enter-fade-start', () => {
   console.log('library2 entered')
+  viewer.tweenControlCenter( lookAtPositions[15], 0 );
 })
 library3.addEventListener('enter-fade-start', () => {
   console.log('library3 entered')
+  viewer.tweenControlCenter( lookAtPositions[16], 0 );
 })
 library4.addEventListener('enter-fade-start', () => {
   console.log('library4 entered')
+  viewer.tweenControlCenter( lookAtPositions[17], 0 );
 })
 library5.addEventListener('enter-fade-start', () => {
   console.log('library5 entered')
+  viewer.tweenControlCenter( lookAtPositions[18], 0 );
 })
 librarySeminar.addEventListener('enter-fade-start', () => {
   console.log('librarySeminar entered')
+  viewer.tweenControlCenter( lookAtPositions[19], 0 );
 })
 hall1.addEventListener('enter-fade-start', () => {
   console.log('hall1 entered')
+  viewer.tweenControlCenter( lookAtPositions[20], 0 );
 })
 hall2.addEventListener('enter-fade-start', () => {
   console.log('hall2 entered')
+  viewer.tweenControlCenter( lookAtPositions[21], 0 );
 })
 room106.addEventListener('enter-fade-start', () => {
   console.log('room106 entered')
+  viewer.tweenControlCenter( lookAtPositions[22], 0 );
 })
 room107.addEventListener('enter-fade-start', () => {
   console.log('room107 entered')
+  viewer.tweenControlCenter( lookAtPositions[23], 0 );
 })
 room109.addEventListener('enter-fade-start', () => {
   console.log('room109 entered')
+  viewer.tweenControlCenter( lookAtPositions[24], 0 );
 })
 room114refurb.addEventListener('enter-fade-start', () => {
   console.log('room114refurb entered')
+  viewer.tweenControlCenter( lookAtPositions[25], 0 );
 })
 room112corridor.addEventListener('enter-fade-start', () => {
   console.log('room112corridor entered')
+  viewer.tweenControlCenter( lookAtPositions[26], 0 );
 })
 room112Pano1.addEventListener('enter-fade-start', () => {
   console.log('room112Pano1 entered')
+  viewer.tweenControlCenter( lookAtPositions[27], 0 );
 })
 room112Pano2.addEventListener('enter-fade-start', () => {
   console.log('room112Pano2 entered')
+  viewer.tweenControlCenter( lookAtPositions[28], 0 );
 })
 room112closet.addEventListener('enter-fade-start', () => {
   console.log('room112closet entered')
+  viewer.tweenControlCenter( lookAtPositions[29], 0 );
 })
 room112entrance.addEventListener('enter-fade-start', () => {
   console.log('room112entrance entered')
+  viewer.tweenControlCenter( lookAtPositions[30], 0 );
 })
 wetLab.addEventListener('enter-fade-start', () => {
   console.log('wetLab entered')
+  viewer.tweenControlCenter( lookAtPositions[31], 0 );
 })
 room114corridor.addEventListener('enter-fade-start', () => {
   console.log('room114corridor entered')
+  viewer.tweenControlCenter( lookAtPositions[32], 0 );
 })
 room114corridor2.addEventListener('enter-fade-start', () => {
   console.log('room114corridor2 entered')
+  viewer.tweenControlCenter( lookAtPositions[33], 0 );
 })
 room114corridor3.addEventListener('enter-fade-start', () => {
   console.log('room114corridor3 entered')
+  viewer.tweenControlCenter( lookAtPositions[34], 0 );
 })
 corridor1.addEventListener('enter-fade-start', () => {
   console.log('corridor1 entered')
+  viewer.tweenControlCenter( lookAtPositions[35], 0 );
 })
 corridor2.addEventListener('enter-fade-start', () => {
   console.log('corridor2 entered')
+  viewer.tweenControlCenter( lookAtPositions[36], 0 );
 })
 room110.addEventListener('enter-fade-start', () => {
   console.log('room110 entered')
+  viewer.tweenControlCenter( lookAtPositions[37], 0 );
 })
 room114.addEventListener('enter-fade-start', () => {
   console.log('room114 entered')
+  viewer.tweenControlCenter( lookAtPositions[38], 0 );
 })
 room118.addEventListener('enter-fade-start', () => {
   console.log('room118 entered')
+  viewer.tweenControlCenter( lookAtPositions[39], 0 );
 })
 room111Pano1.addEventListener('enter-fade-start', () => {
   console.log('room111Pano1 entered')
+  viewer.tweenControlCenter( lookAtPositions[40], 0 );
 })
 room111Pano2.addEventListener('enter-fade-start', () => {
   console.log('room111Pano2 entered')
+  viewer.tweenControlCenter( lookAtPositions[41], 0 );
 })
 room117.addEventListener('enter-fade-start', () => {
   console.log('room117 entered')
+  viewer.tweenControlCenter( lookAtPositions[42], 0 );
 })
 
 
@@ -236,6 +334,8 @@ viewer.add(lobbyPano2);
 viewer.add(lobbyPano3);
 viewer.add(lobbyPano4);
 viewer.add(lobbyPano5);
+//
+viewer.add(stairsPano1);
 viewer.add(gallery1);
 viewer.add(gallery2);
 viewer.add(room123Pano1);
@@ -298,6 +398,7 @@ lobbyPano3.link(lobbyPano4, new THREE.Vector3(3475.43, -1889.29, -3052.56));
 // Lobby end view
 lobbyPano4.link(lobbyPano3, new THREE.Vector3(-4205.28, -2596.77, 720.09));
 lobbyPano4.link(gallery1, new THREE.Vector3(-1057.23, -872.66, -4803.75));
+lobbyPano4.link(stairsPano1, new THREE.Vector3(-3267.61, -1606.55, 3416.14)); //
 
 // Gallery entrance
 gallery1.link(lobbyPano4, new THREE.Vector3(4206.80, -426.05, -2654.32));
@@ -436,4 +537,5 @@ room111Pano2.link(room111Pano1, new THREE.Vector3(-236.12, 185.89, -4980.32));
 // Room 117 view
 room117.link(room118, new THREE.Vector3(-4584.88, -783.12, 1816.94));
 room117.link(entranceStreet, new THREE.Vector3(4676.81, -525.41, -1662.65));
+
 

@@ -1,8 +1,14 @@
+//load all images
 const entranceImage = 'assets/Tolstoi/2.korrus/temp.jpg'
+
+//create panorama objects
 const entrancePano = new PANOLENS.ImagePanorama(entranceImage)
+
+//Add console log event listeners for every panorama object
 const viewer = new PANOLENS.Viewer({
     output: 'console',
     momentum: false,
+
 });
 
 function getURLParameter(param)

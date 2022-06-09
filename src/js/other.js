@@ -5,4 +5,6 @@ const viewer = new PANOLENS.Viewer({
     momentum: false,
 });
 
+
+
 viewer.add(pano);
