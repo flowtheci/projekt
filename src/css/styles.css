@@ -46,3 +46,31 @@ html, body {
   .text {
     padding: 0 20px 20px 20px;
   }
+  #map {
+    
+    text-align: left;
+    margin: auto;
+    z-index: 0;
+    position: absolute;
+    float: right;
+   
+  }
+  #mapSpot {
+    background-color: #d60c0c;
+    width: 15px;
+    height: 15px;
+    z-index: 0;
+    position: absolute;
+    border-radius: 50%;
+  }
+  #mapSpotCurrent {
+    background-color: #0239cf;
+    width: 15px;
+    height: 15px;
+    z-index: 0;
+    position: absolute;
+    border-radius: 50%;
+  }
+  #panorama-map {
+  position: absolute;
+  }

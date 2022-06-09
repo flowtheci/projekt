@@ -1,0 +1,6 @@
+document.getElementById("mapSpot").addEventListener("click",sisenemine);
+
+function sisenemine() {
+  enter.ImagePanorama(stairs2)
+  
+}

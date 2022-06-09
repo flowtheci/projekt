@@ -1,4 +1,9 @@
 
+
+//function createMap() {
+//$("#map").html("<img src='assets/maps/2korrus.jpg'/>");
+//$("#map").css({top: 288, left: 350});
+//}                                    
 // Load all images as constants
 const secondFloorStart = 'assets/Tolstoi/2korrus/3_2_201 1.1-Edit.jpg'
 const secondHallImage1 = 'assets/Tolstoi/2korrus/3_2_207-Edit-Edit.jpg'
@@ -205,3 +210,12 @@ roomPano2.link(stairsPano1, new THREE.Vector3(1995.10, -901.56, 4491.29));
 stairsPano1.link(roomPano2, new THREE.Vector3(-1694.59, -3406.45, -3232.88));
 secondStartPano.link(stairsPano2, new THREE.Vector3(-149.91, -1735.03, -4677.35));
 stairsPano2.link(secondStartPano, new THREE.Vector3(2745.30, -3672.10, 1984.35));
+
+
+	// Position of Map
+	map.style.display = "block";
+	map.style.left = 10 + "px";
+	map.style.top = 10 + "px";
+
+
+
