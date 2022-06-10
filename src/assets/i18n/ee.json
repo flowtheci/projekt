@@ -2,6 +2,7 @@
     "common": {
         "enter": "Sisene",
         "back": "Tagasi",
+        "exitVirtualTour": "Välju tuurist",
         "currentLanguage": "Eesti"
     },
     "menu": {

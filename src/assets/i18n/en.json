@@ -2,6 +2,7 @@
     "common": {
         "enter": "Enter",
         "back": "Back",
+        "exitVirtualTour": "Exit tour",
         "currentLanguage": "English"
     },
     "menu": {
