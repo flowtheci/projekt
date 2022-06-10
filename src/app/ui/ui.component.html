@@ -1,6 +1,6 @@
 <div class="header">
   <div>
-    <button *ngIf="showBuildingPicker" mat-icon-button class="back-button" (click)="toggleView()">
+    <button *ngIf="showBuildingPicker" [@inOutAnimation] mat-icon-button class="back-button" (click)="toggleView()">
       <mat-icon class="back-icon">arrow_back_ios</mat-icon>
     </button>
   </div>
@@ -10,13 +10,13 @@
   </div>
 </div>
 
-<div *ngIf="!showBuildingPicker" class="main-menu">
+<div *ngIf="!showBuildingPicker" [@inOutAnimation] class="main-menu">
   <img class="logo" src="/assets/pallas-logo.jpg" />
   <button mat-button class="menu-button">{{'menu.enrollment' | translate}}</button>
   <button mat-button class="menu-button">{{'menu.studies' | translate}}</button>
   <button mat-button class="menu-button" (click)="toggleView()">{{'menu.virtualTour' | translate}}</button>
 </div>
-<div *ngIf="showBuildingPicker" class="building-picker">
+<div *ngIf="showBuildingPicker" [@inOutAnimation] class="building-picker">
   <h1 class="title-text">{{'ui.chooseBuilding' | translate}}</h1>
   <div class="building-choice">
     <mat-card class="building-card">
@@ -24,7 +24,7 @@
       <mat-card-subtitle>{{'ui.mainBuildingSubtitle' | translate}}</mat-card-subtitle>
       <img mat-card-image class="card-image" src="./assets/tolstoi-cover-1.jpg" alt="Pallase kunstikooli Tolstoi hoone">
       <mat-card-actions>
-        <button mat-raised-button color="warn" routerLink="/tolstoi-1-korrus" routerLinkActive="active">{{'common.enter'
+        <button mat-raised-button color="warn" routerLink="/tolstoi" routerLinkActive="active">{{'common.enter'
           | translate | uppercase}}</button>
       </mat-card-actions>
     </mat-card>
@@ -33,7 +33,7 @@
       <mat-card-subtitle>{{'ui.secondaryBuildingSubtitle' | translate}}</mat-card-subtitle>
       <img mat-card-image class="card-image" src="./assets/temp-cover-1.jpg" alt="Pallase kunstikooli 2. hoone">
       <mat-card-actions>
-        <button mat-raised-button color="warn">{{'common.enter' | translate | uppercase}}</button>
+        <button mat-raised-button color="warn" routerLink="/building2" routerLinkActive="active">{{'common.enter' | translate | uppercase}}</button>
       </mat-card-actions>
     </mat-card>
     <mat-card class="building-card">

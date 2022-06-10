@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap');
+$red: #DB1C23;
+
+.exit-container {
+    position: absolute;
+    top: 2vh;
+    right: 2vw;
+}
+
+.exit-button {
+    font-size: 20px;
+    font-family: 'Kanit', sans-serif;
+    font-weight: 500;
+}
+
+.controls-container {
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+    background-color: rgba(236, 236, 236, 1);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    -webkit-box-shadow: 5px 5px 19px 5px rgba(0,0,0,0.44); 
+    box-shadow: 5px 5px 19px 5px rgba(0,0,0,0.44);
+}
+
+.controls-header {
+    font-family: 'Kanit', sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: $red;
+    margin-bottom: 2vh;
+}
+
+.controls-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1.5vh;
+}
+
+.controls-item-image {
+    width: 2.5vw;
+    height: auto;
+    margin-right: 1vw;
+    margin-left: 1vw;
+}
+
+.controls-item-text {
+    font-family: 'Kanit', sans-serif;
+    font-size: 24px;
+    font-weight: 300;
+    inline-size: 10vw;
+    line-height: 2.2vh;
+    margin-bottom: 0;
+}
+
+.controls-text-left {
+    text-align: left;
+}
+
+.controls-text-right {
+    text-align: right;
+}
+
+.controls-divider {
+    color: $red;
+}
+
+.controls-button {
+    margin-top: 1vh;
+    font-size: 18px;
+}

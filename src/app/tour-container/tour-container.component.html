@@ -1,0 +1,21 @@
+<div class="exit-container">
+	<button mat-raised-button color="warn" class="exit-button" routerLink="/" routerLinkActive="active">{{'common.exitVirtualTour' | translate}}</button>
+</div>
+<div *ngIf="showControls" [@inOutAnimation] class="controls-container">
+    <h1 class="controls-header">{{'ui.howToUse' | translate}}</h1>
+    <div class="controls-item">
+        <img class="controls-item-image" src="./assets/icons/left-click-move.png"/>
+        <h2 class="controls-item-text controls-text-left">{{'ui.lookAroundGuide' | translate}}</h2>
+    </div>
+    <div class="controls-item">
+        <h2 class="controls-item-text controls-text-right">{{'ui.zoomInGuide' | translate}}</h2>
+        <img class="controls-item-image" src="./assets/icons/zoom.png"/>
+    </div>
+    <div class="controls-item">
+        <img class="controls-item-image" src="./assets/icons/left-click.png"/>
+        <h2 class="controls-item-text controls-text-left">{{'ui.moveToRoomGuide' | translate}}</h2>
+    </div>
+    <button class="controls-button" mat-flat-button color="warn" (click)="closeControlDialog()">{{'ui.gotIt' | translate}}</button>
+</div>
+<app-tolstoi-first-floor *ngIf="this.building == 'tolstoi'"></app-tolstoi-first-floor>
+<app-tolstoi-second-floor *ngIf="this.building == 'teine'"></app-tolstoi-second-floor>

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 
 // @ts-ignore
 import * as PANOLENS from 'panolens';
@@ -10,7 +10,7 @@ import * as THREE from 'three';
   templateUrl: './tolstoi-second-floor.component.html',
   styleUrls: ['./tolstoi-second-floor.component.scss']
 })
-export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit {
+export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor() { }
 
@@ -19,16 +19,28 @@ export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    
+
   }
 
+  ngOnDestroy(): void {
+    this.disposePanoramaContainer();
+  }
+
+  viewer = new PANOLENS.Viewer({
+    output: 'console',
+    momentum: false,
+  });
+
+  public disposePanoramaContainer() {
+    this.viewer.destroy();
+    const elements = document.getElementsByClassName('panolens-container');
+    while (elements.length > 0) {
+      elements[0].parentNode?.removeChild(elements[0]);
+    }
+  }
 
   public loadFloorData() {
 
-    const viewer = new PANOLENS.Viewer({
-      output: 'console',
-      momentum: false,
-    });
 
     // Load all images as constants
     const secondFloorStart = 'assets/Tolstoi/2korrus/3_2_201 1.1-Edit.jpg'
@@ -149,28 +161,28 @@ export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit {
       console.log('stairs2 entered')
     })
 
-    viewer.add(secondStartPano);
-    viewer.add(secondHallPano);
-    viewer.add(secondHallPano2);
-    viewer.add(paintingHallPano1);
-    viewer.add(paintingHallPano2);
-    viewer.add(roomPano1);
-    viewer.add(roomPano2);
-    viewer.add(corridorPano1);
-    viewer.add(corridorPano2);
-    viewer.add(corridorPano3);
-    viewer.add(paintingLeadPano);
-    viewer.add(paintingRoomPano);
-    viewer.add(restoRoomPano);
-    viewer.add(restoRoomPano2);
-    viewer.add(terrassPano1);
-    viewer.add(terrassPano2);
-    viewer.add(drawingClassPano1);
-    viewer.add(drawingClassPano2);
-    viewer.add(drawingClassPano3);
-    viewer.add(drawingClassPano4);
-    viewer.add(stairsPano1);
-    viewer.add(stairsPano2);
+    this.viewer.add(secondStartPano);
+    this.viewer.add(secondHallPano);
+    this.viewer.add(secondHallPano2);
+    this.viewer.add(paintingHallPano1);
+    this.viewer.add(paintingHallPano2);
+    this.viewer.add(roomPano1);
+    this.viewer.add(roomPano2);
+    this.viewer.add(corridorPano1);
+    this.viewer.add(corridorPano2);
+    this.viewer.add(corridorPano3);
+    this.viewer.add(paintingLeadPano);
+    this.viewer.add(paintingRoomPano);
+    this.viewer.add(restoRoomPano);
+    this.viewer.add(restoRoomPano2);
+    this.viewer.add(terrassPano1);
+    this.viewer.add(terrassPano2);
+    this.viewer.add(drawingClassPano1);
+    this.viewer.add(drawingClassPano2);
+    this.viewer.add(drawingClassPano3);
+    this.viewer.add(drawingClassPano4);
+    this.viewer.add(stairsPano1);
+    this.viewer.add(stairsPano2);
 
 
     // link panoramas with points

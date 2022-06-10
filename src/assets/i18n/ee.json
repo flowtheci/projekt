@@ -16,6 +16,11 @@
         "secondBuilding": "2. hoone",
         "thirdBuilding": "3. hoone",
         "mainBuildingSubtitle": "Pallase kunstikooli peahoone",
-        "secondaryBuildingSubtitle": "Pallase kunstikooli kõrvalhoone"
+        "secondaryBuildingSubtitle": "Pallase kunstikooli kõrvalhoone",
+        "howToUse": "Kuidas kasutada?",
+        "lookAroundGuide": "Ringi vaatamiseks hoia all hiire vasakut nuppu ning liiguta hiirt.",
+        "zoomInGuide": "Sisse- ja väljasuumimiseks keri hiire rullikut.",
+        "moveToRoomGuide": "Ruumide vahetamiseks ja infopunktide avamiseks kasuta hiire vasakut nuppu.",
+        "gotIt": "Selge!"
     }
 }

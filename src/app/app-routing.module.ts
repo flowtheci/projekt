@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TolstoiFirstFloorComponent } from './tolstoi-first-floor/tolstoi-first-floor.component';
-import { TolstoiSecondFloorComponent } from './tolstoi-second-floor/tolstoi-second-floor.component';
+import { TourContainerComponent } from './tour-container/tour-container.component';
 import { UiComponent } from './ui/ui.component';
 
 const routes: Routes = [
-  {path: 'tolstoi-1-korrus', component: TolstoiFirstFloorComponent},
-  {path: 'tolstoi-2-korrus', component: TolstoiSecondFloorComponent},
+  {path: 'tolstoi', component: TourContainerComponent, data: {building: 'tolstoi'}},
+  {path: 'building2', component: TourContainerComponent, data: {building: 'teine'}},
   {path: '', component: UiComponent},
 ];
 
