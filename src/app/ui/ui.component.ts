@@ -17,7 +17,7 @@ export class UiComponent implements OnInit {
   }
 
   // Creates an event in browser history when user enters virtual tour menu, and shows the building picker
-  enterVirtualTour() {
+  toggleView() {
     history.pushState(null, "null", window.location.href);
     this.showBuildingPicker = !this.showBuildingPicker;
   }
@@ -31,10 +31,10 @@ export class UiComponent implements OnInit {
 
   }
 
-  // Creates an event listener which listens for every browser history change, and hides the building picker when triggered
+  // Creates an event listener which listens for every browser history change, and toggles the building picker menu when triggered
   @HostListener('window:popstate', ['$event'])
   onPopState(_event: any) {
-    this.showBuildingPicker = false;
+    this.showBuildingPicker = !this.showBuildingPicker;
   }
   
   
