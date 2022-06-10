@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {TranslateService} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-root',
@@ -6,6 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+
+  constructor(private translate: TranslateService) {
+    translate.setDefaultLang('ee');
+    translate.use('ee');
+  }
+  
   title = 'virtuaaltuur';
 
   // Returns URL query parameter with given key or empty string if it doesn't exist

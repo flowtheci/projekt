@@ -1,8 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 
 .language-picker {
-    margin-top: 30vh;
+    margin-top: 2vh;
+    margin-right: 20vw;
+    margin-bottom: 28vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
 }
+
+.language-picker:hover {
+    cursor: pointer;
+}
+
+.language-text {
+    margin-bottom: 0px;
+    margin-right: 3px;
+    font-weight: 500;
+}
+
+.language-icon {
+    color: #DB1C23;
+}
+
 .main-menu {
     display: flex;
     flex-direction: column;

@@ -1,35 +1,38 @@
-<div class="language-picker"></div>
+<div class="language-picker" (click)="toggleLanguage()">
+  <h2 class="language-text">{{'common.currentLanguage' | translate}}</h2>
+  <mat-icon class="language-icon">language</mat-icon>
+</div>
 <div *ngIf="!showBuildingPicker" class="main-menu">
     <img class="logo" src="/assets/pallas-logo.jpg"/>
-    <button mat-button class="menu-button">Sisseastumine</button>
-    <button mat-button class="menu-button">Õpingud</button>
-    <button mat-button class="menu-button" (click)="enterVirtualTour()">Virtuaaltuur</button>
+    <button mat-button class="menu-button">{{'menu.enrollment' | translate}}</button>
+    <button mat-button class="menu-button">{{'menu.studies' | translate}}</button>
+    <button mat-button class="menu-button" (click)="enterVirtualTour()">{{'menu.virtualTour' | translate}}</button>
 </div>
 <div *ngIf="showBuildingPicker" class="building-picker">
-    <h1 class="title-text">Vali hoone:</h1>
+    <h1 class="title-text">{{'ui.chooseBuilding' | translate}}</h1>
     <div class="building-choice">
         <mat-card class="building-card">
-            <mat-card-title >Tolstoi</mat-card-title>
-            <mat-card-subtitle>Pallase kunstikooli peahoone</mat-card-subtitle>
+            <mat-card-title >{{'ui.tolstoi' | translate}}</mat-card-title>
+            <mat-card-subtitle>{{'ui.mainBuildingSubtitle' | translate}}</mat-card-subtitle>
             <img mat-card-image class="card-image" src="./assets/tolstoi-cover-1.jpg" alt="Pallase kunstikooli Tolstoi hoone">
             <mat-card-actions>
-              <button mat-raised-button color="warn" routerLink="/tolstoi-1-korrus" routerLinkActive="active">SISENE</button>
+              <button mat-raised-button color="warn" routerLink="/tolstoi-1-korrus" routerLinkActive="active">{{'common.enter' | translate | uppercase}}</button>
             </mat-card-actions>
         </mat-card>
         <mat-card class="building-card">
-            <mat-card-title >2. hoone</mat-card-title>
-            <mat-card-subtitle>Pallase kunstikooli kõrvalhoone</mat-card-subtitle>
+            <mat-card-title >{{'ui.secondBuilding' | translate}}</mat-card-title>
+            <mat-card-subtitle>{{'ui.secondaryBuildingSubtitle' | translate}}</mat-card-subtitle>
             <img mat-card-image class="card-image" src="./assets/temp-cover-1.jpg" alt="Pallase kunstikooli 2. hoone">
             <mat-card-actions>
-              <button mat-raised-button color="warn">SISENE</button>
+              <button mat-raised-button color="warn">{{'common.enter' | translate | uppercase}}</button>
             </mat-card-actions>
         </mat-card>
         <mat-card class="building-card">
-            <mat-card-title >3. hoone</mat-card-title>
-            <mat-card-subtitle>Pallase kunstikooli kõrvalhoone</mat-card-subtitle>
+            <mat-card-title >{{'ui.thirdBuilding' | translate}}</mat-card-title>
+            <mat-card-subtitle>{{'ui.secondaryBuildingSubtitle' | translate}}</mat-card-subtitle>
             <img mat-card-image class="card-image" src="./assets/temp-cover-2.jpg" alt="Pallase kunstikooli 3. hoone">
             <mat-card-actions>
-              <button mat-raised-button color="warn">SISENE</button>
+              <button mat-raised-button color="warn">{{'common.enter' | translate | uppercase}}</button>
             </mat-card-actions>
         </mat-card>
     </div>

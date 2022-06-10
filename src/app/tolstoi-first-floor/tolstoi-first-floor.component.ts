@@ -1,16 +1,17 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 
 // @ts-ignore
 import * as PANOLENS from 'panolens';
 // @ts-ignore
 import * as THREE from 'three';
 
+
 @Component({
   selector: 'app-tolstoi-first-floor',
   templateUrl: './tolstoi-first-floor.component.html',
   styleUrls: ['./tolstoi-first-floor.component.scss']
 })
-export class TolstoiFirstFloorComponent implements OnInit, AfterViewInit {
+export class TolstoiFirstFloorComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor() {
    }
@@ -22,10 +23,22 @@ export class TolstoiFirstFloorComponent implements OnInit, AfterViewInit {
     this.loadFloorData();   
   }
 
+  ngOnDestroy(): void {
+    this.disposePanoramaContainer();
+  }
+
   viewer = new PANOLENS.Viewer({
     output: 'console',
     momentum: false,
 });
+
+public disposePanoramaContainer(){
+  this.viewer.destroy();
+  const elements = document.getElementsByClassName('panolens-container');
+  while(elements.length > 0){
+      elements[0].parentNode?.removeChild(elements[0]);
+  }
+}
 
 
 public loadFloorData() {

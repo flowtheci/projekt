@@ -1,0 +1,20 @@
+{
+    "common": {
+        "enter": "Sisene",
+        "back": "Tagasi",
+        "currentLanguage": "Eesti"
+    },
+    "menu": {
+        "enrollment": "Sisseastumine",
+        "studies": "Õpingud",
+        "virtualTour": "Virtuaaltuur"
+    },
+    "ui": {
+        "chooseBuilding": "Vali hoone:",
+        "tolstoi": "Tolstoi",
+        "secondBuilding": "2. hoone",
+        "thirdBuilding": "3. hoone",
+        "mainBuildingSubtitle": "Pallase kunstikooli peahoone",
+        "secondaryBuildingSubtitle": "Pallase kunstikooli kõrvalhoone"
+    }
+}

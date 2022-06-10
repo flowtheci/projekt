@@ -1,0 +1,20 @@
+{
+    "common": {
+        "enter": "Enter",
+        "back": "Back",
+        "currentLanguage": "English"
+    },
+    "menu": {
+        "enrollment": "Enrollment",
+        "studies": "Studies",
+        "virtualTour": "Virtual tour"
+    },
+    "ui": {
+        "chooseBuilding": "Choose building:",
+        "tolstoi": "Tolstoi",
+        "secondBuilding": "Building 2",
+        "thirdBuilding": "Building 3",
+        "mainBuildingSubtitle": "Pallase University main building",
+        "secondaryBuildingSubtitle": "Pallase University side building"
+    }
+}
