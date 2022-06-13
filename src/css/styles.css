@@ -46,31 +46,49 @@ html, body {
   .text {
     padding: 0 20px 20px 20px;
   }
-  #map {
+  #zoom-in {
+    bottom:5px;
+    right: 90px;
     
-    text-align: left;
-    margin: auto;
+  }
+  #zoom-out {
+    
+    bottom: 5px;
+    right: 130px;
+  }
+  #left {
+    
+    bottom: 5px;
+    right: 170px;
+  }
+  #right {
+    
+    bottom: 5px;
+    right: 220px;
+  }
+  #up {
+    
+    bottom: 5px;
+    right: 260px;
+  }
+  #down {
+    
+    bottom: 5px;
+    right: 300px;
+  }
+
+  button {
+    position: absolute;
+    top: 5px;
+    width: 100px;
+    height: 30px;
+  }
+  .panoNavButton {
+    width: 36px;
+    height: 36px;
     z-index: 0;
     position: absolute;
-    float: right;
-   
   }
-  #mapSpot {
-    background-color: #d60c0c;
-    width: 15px;
-    height: 15px;
-    z-index: 0;
-    position: absolute;
-    border-radius: 50%;
-  }
-  #mapSpotCurrent {
-    background-color: #0239cf;
-    width: 15px;
-    height: 15px;
-    z-index: 0;
-    position: absolute;
-    border-radius: 50%;
-  }
-  #panorama-map {
-  position: absolute;
-  }
+  
+
+  

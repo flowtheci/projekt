@@ -7,18 +7,16 @@
 		<style>
 			body { margin: 0; }
 		</style>
+	
 	</head>
 	<body>
-		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="js/three.min.js"></script>
 		<script src="js/panolens.min.js"></script>
+		<script src="js/tolstoi22.js"></script>
+		<script src="js/zoom.js"></script>
 		
-		<figure id="map">
-		<img id="mapImage" src="assets/maps/2korrus.jpg" style="display: block; left: 10px; top: 10px; width: 500px; height: 250px;" alt="jajjaa">
-		<button id="mapSpot" style="left: 190px; top: 135px;"> </button>
-		<button id="mapSpot" style="left: 180px; top: 110px;"> </button>
-		</figure>
-	    </div>
+		
 	
 		<div id="desc-container" style="display: none; top: 0px; position: absolute; transform: translate(65.5628px, 329.504px);" class="infospot">
 			<div class="title">Test</div>
@@ -28,7 +26,33 @@
 			<div class="title">Test</div>
             <div class="text">English text here. This is demo text. Won't years greater he. Female Lesser in fruit signs face Gathering be he have void fruit him his, the him winged whales fruitful them great form saw subdue shall life meat their first Day after to sea green. Divided living.</div>
         </div>
-		<script src="js/tolstoi22.js"></script>
-		<script src="js/map.js"></script>
+		<div class="zoom">
+			<div class="panoNavButton" id="zoom-in">
+				<img src="assets/icons/gui_zoomin_icon.png" alt="Zoom in"/>
+			</div>
+			<div class="panoNavButton" id="zoom-out">
+				<img src="assets/icons/gui_zoomout_icon.png" alt="Zoom out"/>
+			</div>
+		</div>
+		<div class="looking">
+			<div class="panoNavButton" id="left"> 
+				<img src="assets/icons/gui_panleft_icon.png" alt="Look left"/>
+			</div>
+			<div class="panoNavButton" id="right"> 
+				<img src="assets/icons/gui_panright_icon.png" alt="Look right"/>
+			</div>
+			<div class="panoNavButton" id="up"> 
+				<img src="assets/icons/gui_panup_icon.png" alt="Look up"/>
+			</div>
+			<div class="panoNavButton" id="down"> 
+				<img src="assets/icons/gui_pandown_icon.png" alt="Look down"/>
+			</div>
+			
+        </div>
+
+		</div>
+		<script src="js/zoom.js"></script>
+	</div>
+
 	</body>
 </html>
