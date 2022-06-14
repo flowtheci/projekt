@@ -47,34 +47,36 @@ html, body {
     padding: 0 20px 20px 20px;
   }
   #zoom-in {
-    bottom:5px;
+    bottom:0px;
     right: 90px;
     
   }
   #zoom-out {
     
-    bottom: 5px;
+    bottom: 0px;
     right: 130px;
   }
   #left {
     
-    bottom: 135px;
-    right: 190px;
+    bottom: 125px;
+    left: 25px;
   }
   #right {
     
-    bottom: 135px;
-    right: 70px;
+    bottom: 125px;
+    left: 105px;
   }
   #up {
     
-    bottom: 190px;
-    right: 130px;
+    bottom: 165px;
+    left: 65px;
+    position: absolute;
   }
   #down {
    
-    bottom: 80px;
-    right: 130px;
+    bottom: 85px;
+    left: 65px;
+    position: absolute;
     
   }
 
@@ -90,6 +92,6 @@ html, body {
     z-index: 0;
     position: absolute;
   }
-  
+
 
   
