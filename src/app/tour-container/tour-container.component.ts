@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { TolstoiFirstFloorComponent } from '../tolstoi-first-floor/tolstoi-first-floor.component';
+import { RoomNavigationService } from '../room-navigation.service';
 
 @Component({
   selector: 'app-tour-container',
@@ -24,9 +26,18 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 })
 export class TourContainerComponent implements OnInit {
   building: string = '';
+  room: string = '';
   showControls = true;
+  roomToNavigateTo: string = '';
 
-  constructor(private route: ActivatedRoute) { }   
+  constructor(private route: ActivatedRoute, private roomService: RoomNavigationService) { 
+    this.roomService.currentMessage.subscribe(message =>  {
+      console.log("Update received by tour container, attempting to navigate to " + message);
+      this.roomToNavigateTo = message;
+    });
+  }   
+
+  
 
   ngOnInit(): void {
     this.route.data.subscribe(data => {
@@ -35,7 +46,13 @@ export class TourContainerComponent implements OnInit {
     });
   }
 
+
   closeControlDialog() {
     this.showControls = false;
   }
+
+  public readRoomName(event: any) {
+    this.room = event;
+  }
+
 }

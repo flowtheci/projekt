@@ -7,7 +7,7 @@ import {MapComponent} from "./map/map.component";
 const routes: Routes = [
   {path: 'tolstoi', component: TourContainerComponent, data: {building: 'tolstoi'}},
   {path: 'building2', component: TourContainerComponent, data: {building: 'teine'}},
-  {path: 'mapTest', component: MapComponent},
+  {path: 'mapTest', component: MapComponent, data: {currentBuilding: 'tolstoi', currentFloor: 1}},
   {path: '', component: UiComponent},
 ];
 

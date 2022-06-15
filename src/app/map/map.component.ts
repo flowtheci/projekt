@@ -1,27 +1,46 @@
-import {AfterContentInit, AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import { v4 as uuidv4 } from 'uuid';
+import * as $ from 'jquery';
+import { RoomNavigationService } from '../room-navigation.service';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  styleUrls: ['./map.component.scss'],
 })
 export class MapComponent implements OnInit {
 
   currentFloorMapUrl: string = '';
-  currentBuilding = '';
-  currentFloor = -1; // -1 = undefined floor
+  @Input() currentBuilding = '';
+  @Input() currentFloor = -1; // -1 = undefined floor
+  @Input() set selectedRoom(room: string) {
+    this.selectRoomById(room);
+  }
 
-  tolstoiFirstFloorMapUrl: string = '/assets/Tolstoi/1.korrus/1korruskaart.jpg';
+  addedPoints = 0;
+  tolstoiFirstFloorMapUrl: string = './assets/Tolstoi/1.korrus/1korruskaart.jpg';
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private roomService: RoomNavigationService) { 
+  }
 
   ngOnInit(): void {
-    this.route.data.subscribe(data => {
-      this.currentBuilding = data['currentBuilding'];
-      this.currentFloor = data['currentFloor'];
-      console.log('Entered building ' + this.currentBuilding);
+    console.log('Entered building ' + this.currentBuilding);
+    if (this.currentBuilding == '') {
+      this.currentBuilding = 'tolstoi';
+      this.currentFloor = 1;
+    }
+    this.setupCurrentFloorMap();
+    this.createTolstoiFirstFloorPoints();
+
+    $('.dot').on('click', (evt) => {
+      this.selectRoom(evt);
     });
+    $(".map-image").on("click", function(event) {
+      var x = event.pageX - this.offsetLeft - 15;
+      var y = event.pageY - this.offsetTop - 65;
+      console.log("X Coordinate: " + x + " Y Coordinate: " + y);
+  });
   }
 
   public setupCurrentFloorMap(): void {
@@ -37,8 +56,16 @@ export class MapComponent implements OnInit {
     return this.currentFloorMapUrl;
   }
 
+  public createTolstoiFirstFloorPoints() {
+    this.placeCoordinate(470, 452, "entrancePano");
+    this.placeCoordinate(470, 400, "lobbyPano1");
+    this.placeCoordinate(400, 400, "lobbyPano2");
+    this.placeCoordinate(395, 310, "lobbyPano5");
+  }
+
   // Places a clickable dot on the minimap
-  public placeCoordinate(offX: number, offY: number): void {
+  // First added dot is shown as starting point by default
+  public placeCoordinate(offX: number, offY: number, roomName: string): void {
 
     const image = document.getElementById('map-image');
     const margin = 0;
@@ -62,12 +89,37 @@ export class MapComponent implements OnInit {
     l += offX;
     t += offY;
 
+
     const newImage = document.createElement("img");
-    newImage.setAttribute('src', '/assets/dot.png');
+    newImage.setAttribute('src', this.addedPoints == 0 ? '/assets/dot-here.png' : '/assets/dot.png');
+    newImage.classList.add("dot");
     newImage.style.position = "absolute";
+    newImage.style.cursor = "pointer";
     newImage.style.left = l + "px";
     newImage.style.top = t + "px";
+    newImage.id = roomName;
     document.getElementById('map-container')?.prepend(newImage);
+    this.addedPoints++;
+  }
+
+  public selectRoom(event: JQuery.ClickEvent) {
+    let id: string = (event.target as Element).id;
+    console.warn("Click event on element with id " + id);
+    this.selectRoomById(id);
+  }
+
+  public selectRoomById(id: string) {
+    const selectedElement = document.getElementById(id);
+    const previousSelectedElement = document.getElementsByClassName('active-dot').item(0);
+    
+    if (previousSelectedElement) {
+      previousSelectedElement.setAttribute('src', '/assets/dot.png');
+      previousSelectedElement.classList.remove('active-dot');
+    }
+
+    selectedElement?.setAttribute('src', '/assets/dot-here.png');
+    selectedElement?.classList.add('active-dot');
+    this.roomService.changeRoom(id);
   }
 
 }
