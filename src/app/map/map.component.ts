@@ -1,40 +1,43 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterContentInit, AfterViewInit, Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit, AfterViewInit {
+export class MapComponent implements OnInit {
 
-  currentFloorMapUrl: string = '/assets/Tolstoi/testmap.png';
+  currentFloorMapUrl: string = '';
+  currentBuilding = '';
+  currentFloor = -1; // -1 = undefined floor
 
-  constructor() { }
+  tolstoiFirstFloorMapUrl: string = '/assets/Tolstoi/1.korrus/1korruskaart.jpg';
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.data.subscribe(data => {
+      this.currentBuilding = data['currentBuilding'];
+      this.currentFloor = data['currentFloor'];
+      console.log('Entered building ' + this.currentBuilding);
+    });
   }
 
-  ngAfterViewInit() {
-    const image = document.getElementById('map-image');
-    if (image == null) {
-      console.log('Image could not be loaded.');
-      return;
+  public setupCurrentFloorMap(): void {
+    if (this.currentBuilding == 'tolstoi') {
+      switch (this.currentFloor) {
+        case 1:
+          this.currentFloorMapUrl = this.tolstoiFirstFloorMapUrl;
+      }
     }
-    console.log(image);
-    console.log(image.offsetHeight);
-    console.log(image.offsetWidth);
-
-    for (let i = 0; i < 10; i++) {
-      this.placeCoordinate(Math.random() * image.offsetWidth, Math.random() * image.offsetHeight);
-    }
-
-
   }
 
   get currentFloorMap(): string {
     return this.currentFloorMapUrl;
   }
 
+  // Places a clickable dot on the minimap
   public placeCoordinate(offX: number, offY: number): void {
 
     const image = document.getElementById('map-image');
@@ -61,10 +64,10 @@ export class MapComponent implements OnInit, AfterViewInit {
 
     const newImage = document.createElement("img");
     newImage.setAttribute('src', '/assets/dot.png');
-    newImage.setAttribute('class', 'overlays');
+    newImage.style.position = "absolute";
     newImage.style.left = l + "px";
     newImage.style.top = t + "px";
-    document.getElementById('map-container')?.appendChild(newImage);
+    document.getElementById('map-container')?.prepend(newImage);
   }
 
 }
