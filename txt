@@ -1,0 +1,27 @@
+document.getElementById("mapSpot").addEventListener("click",sisenemine);
+
+function sisenemine() {
+  enter.ImagePanorama(stairs2)
+  
+}
+
+<div class="buttons"></div>
+		<button type="button" class="panoNavButton" id="zoom-in">
+			<img src="assets/temp/gui_zoomin_icon.png" alt="Zoom in"/>
+		</button>
+		<button type="button" class="panoNavButton" id="zoom-out">
+			<img src="assets/temp/gui_zoomout_icon.png" alt="Zoom out"/>
+		</button>
+
+		$('#zoom-in').on('click', function() {
+			var currentZoom = viewer.camera.fov;
+			var newZoom = currentZoom - 10;
+			if(newZoom < 30) newZoom = 30;
+			viewer.setCameraFov(newZoom);
+		  });
+		 $('#zoom-out').on('click', function() {
+			var currentZoom = viewer.camera.fov;
+			var newZoom = currentZoom + 10;
+			if(newZoom > 110) newZoom = 110;
+			viewer.setCameraFov(newZoom);
+		  });
