@@ -20,6 +20,7 @@ export class MapComponent implements OnInit {
 
   addedPoints = 0;
   tolstoiFirstFloorMapUrl: string = './assets/Tolstoi/1.korrus/1korruskaart.jpg';
+  tolstoiSecondFloorMapUrl: string = './assets/Tolstoi/2korrus/2korruskaart.jpg';
 
   constructor(private route: ActivatedRoute, private roomService: RoomNavigationService) { 
   }
@@ -44,10 +45,17 @@ export class MapComponent implements OnInit {
   }
 
   public setupCurrentFloorMap(): void {
-    if (this.currentBuilding == 'tolstoi') {
+    console.log(this.currentBuilding + this.currentFloor)
+    if (this.currentBuilding == 'tolstoi' || this.currentBuilding == 'teine') {
       switch (this.currentFloor) {
         case 1:
           this.currentFloorMapUrl = this.tolstoiFirstFloorMapUrl;
+          this.createTolstoiFirstFloorPoints();
+          break;
+        case 2:
+          this.currentFloorMapUrl = this.tolstoiSecondFloorMapUrl;
+          this.createTolstoiSecondFloorPoints();
+          break;
       }
     }
   }
@@ -101,6 +109,8 @@ export class MapComponent implements OnInit {
     this.placeCoordinate(589, -1, "entranceStreet")
     // entranceStreet ???
   }
+
+  public createTolstoiSecondFloorPoints() {}
 
   // Places a clickable dot on the minimap
   // First added dot is shown as starting point by default
