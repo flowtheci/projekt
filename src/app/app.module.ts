@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TolstoiFirstFloorComponent } from './tolstoi-first-floor/tolstoi-first-floor.component';
 import { TolstoiSecondFloorComponent } from './tolstoi-second-floor/tolstoi-second-floor.component';
+import { TolstoiThirdFloorComponent } from './tolstoi-third-floor/tolstoi-third-floor.component';
 import { UiComponent } from './ui/ui.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
@@ -22,6 +23,7 @@ import { RoomNavigationService } from './room-navigation.service';
     AppComponent,
     TolstoiFirstFloorComponent,
     TolstoiSecondFloorComponent,
+    TolstoiThirdFloorComponent,
     UiComponent,
     TourContainerComponent,
     MapComponent

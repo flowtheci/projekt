@@ -31,7 +31,7 @@ export class MapComponent implements OnInit {
       this.currentFloor = 1;
     }
     this.setupCurrentFloorMap();
-    this.createTolstoiFirstFloorPoints();
+    
 
     $('.dot').on('click', (evt) => {
       this.selectRoom(evt);
