@@ -17,5 +17,6 @@
     </div>
     <button class="controls-button" mat-flat-button color="warn" (click)="closeControlDialog()">{{'ui.gotIt' | translate}}</button>
 </div>
+
 <app-tolstoi-first-floor *ngIf="this.building == 'tolstoi'"></app-tolstoi-first-floor>
 <app-tolstoi-second-floor *ngIf="this.building == 'teine'"></app-tolstoi-second-floor>
