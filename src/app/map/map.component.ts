@@ -1,6 +1,5 @@
 import {AfterContentInit, AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import { v4 as uuidv4 } from 'uuid';
 import * as $ from 'jquery';
 import { RoomNavigationService } from '../room-navigation.service';
 
@@ -32,7 +31,6 @@ export class MapComponent implements OnInit {
       this.currentFloor = 1;
     }
     this.setupCurrentFloorMap();
-    this.createTolstoiFirstFloorPoints();
 
     $('.dot').on('click', (evt) => {
       this.selectRoom(evt);
