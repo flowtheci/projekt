@@ -20,7 +20,6 @@ export class MapComponent implements OnInit {
 
   addedPoints = 0;
   tolstoiFirstFloorMapUrl: string = './assets/Tolstoi/1.korrus/1korruskaart.jpg';
-  tolstoiSecondFloorMapUrl: string = './assets/Tolstoi/2korrus/2korruskaart.jpg';
 
   constructor(private route: ActivatedRoute, private roomService: RoomNavigationService) { 
   }
@@ -32,6 +31,7 @@ export class MapComponent implements OnInit {
       this.currentFloor = 1;
     }
     this.setupCurrentFloorMap();
+    this.createTolstoiFirstFloorPoints();
 
     $('.dot').on('click', (evt) => {
       this.selectRoom(evt);
@@ -44,17 +44,10 @@ export class MapComponent implements OnInit {
   }
 
   public setupCurrentFloorMap(): void {
-    console.log(this.currentBuilding + this.currentFloor)
-    if (this.currentBuilding == 'tolstoi' || this.currentBuilding == 'teine') {
+    if (this.currentBuilding == 'tolstoi') {
       switch (this.currentFloor) {
         case 1:
           this.currentFloorMapUrl = this.tolstoiFirstFloorMapUrl;
-          this.createTolstoiFirstFloorPoints();
-          break;
-        case 2:
-          this.currentFloorMapUrl = this.tolstoiSecondFloorMapUrl;
-          this.createTolstoiSecondFloorPoints();
-          break;
       }
     }
   }
@@ -68,10 +61,45 @@ export class MapComponent implements OnInit {
     this.placeCoordinate(470, 400, "lobbyPano1");
     this.placeCoordinate(400, 400, "lobbyPano2");
     this.placeCoordinate(395, 310, "lobbyPano5");
-  }
-
-  public createTolstoiSecondFloorPoints() {
-    
+    this.placeCoordinate(479, 342, "lobbyPano3");
+    this.placeCoordinate(485, 289, "lobbyPano4"); 
+    this.placeCoordinate(600, 287, "gallery1"); 
+    this.placeCoordinate(645, 285, "gallery2"); 
+    this.placeCoordinate(670, 218, "room123Pano1"); 
+    this.placeCoordinate(663, 162, "room123Pano2"); 
+    this.placeCoordinate(725, 222, "canteen1"); 
+    this.placeCoordinate(793, 229, "canteen2"); 
+    this.placeCoordinate(859, 66, "library1"); 
+    this.placeCoordinate(822, 107, "library2"); 
+    this.placeCoordinate(870, 113, "library3"); 
+    //this.placeCoordinate(479, 342, "library4"); //
+    this.placeCoordinate(684, 92, "library5"); 
+    this.placeCoordinate(927, 65, "librarySeminar"); 
+    this.placeCoordinate(315, 195, "hall1"); 
+    this.placeCoordinate(315, 295, "hall2"); 
+    this.placeCoordinate(315, 367, "room106"); 
+    this.placeCoordinate(240, 308, "room107"); 
+    this.placeCoordinate(240, 236, "room109"); 
+    this.placeCoordinate(411, 194, "room114refurb"); 
+    this.placeCoordinate(366, 194, "room114corridor"); 
+    this.placeCoordinate(371, 79, "room112Pano1"); 
+    this.placeCoordinate(449, 60, "room112Pano2"); 
+    this.placeCoordinate(444, 113, "room112closet"); 
+    this.placeCoordinate(397, 150, "room112entrance"); 
+    this.placeCoordinate(315, 295, "wetLab"); 
+    this.placeCoordinate(359, 121, "room112corridor"); 
+    this.placeCoordinate(444, 154, "room114corridor2"); 
+    this.placeCoordinate(502, 152, "room114corridor3"); 
+    this.placeCoordinate(256, 150, "corridor1"); 
+    this.placeCoordinate(257, 181, "corridor2"); 
+    this.placeCoordinate(262, 79, "room110"); 
+    this.placeCoordinate(499, 58, "room114"); 
+    this.placeCoordinate(594, 150, "room118"); 
+    this.placeCoordinate(189, 182, "room111Pano1"); 
+    this.placeCoordinate(96, 178, "room111Pano2"); 
+    this.placeCoordinate(589, 75, "room117"); 
+    this.placeCoordinate(589, -1, "entranceStreet")
+    // entranceStreet ???
   }
 
   // Places a clickable dot on the minimap
@@ -95,7 +123,7 @@ export class MapComponent implements OnInit {
     }
 
     if (offX > margin) offX -= margin;
-    if (offY > margin) offY -= margin;
+    if( offY > margin) offY -= margin;
 
     l += offX;
     t += offY;
@@ -119,7 +147,6 @@ export class MapComponent implements OnInit {
     this.selectRoomById(id);
   }
 
-  // finds element by id and replaces image with red dot image, to show where user is on map
   public selectRoomById(id: string) {
     const selectedElement = document.getElementById(id);
     const previousSelectedElement = document.getElementsByClassName('active-dot').item(0);
