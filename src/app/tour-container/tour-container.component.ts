@@ -24,6 +24,7 @@ import { RoomNavigationService } from '../room-navigation.service';
     )
   ]
 })
+
 export class TourContainerComponent implements OnInit {
   building: string = '';
   room: string = '';
