@@ -20,6 +20,7 @@ export class MapComponent implements OnInit {
 
   addedPoints = 0;
   tolstoiFirstFloorMapUrl: string = './assets/Tolstoi/1.korrus/1korruskaart.jpg';
+  tolstoiSecondFloorMapUrl: string = './assets/Tolstoi/2korrus/2korruskaart.jpg';
 
   constructor(private route: ActivatedRoute, private roomService: RoomNavigationService) { 
   }
@@ -31,7 +32,6 @@ export class MapComponent implements OnInit {
       this.currentFloor = 1;
     }
     this.setupCurrentFloorMap();
-    this.createTolstoiFirstFloorPoints();
 
     $('.dot').on('click', (evt) => {
       this.selectRoom(evt);
@@ -44,10 +44,17 @@ export class MapComponent implements OnInit {
   }
 
   public setupCurrentFloorMap(): void {
-    if (this.currentBuilding == 'tolstoi') {
+    console.log(this.currentBuilding + this.currentFloor)
+    if (this.currentBuilding == 'tolstoi' || this.currentBuilding == 'teine') {
       switch (this.currentFloor) {
         case 1:
           this.currentFloorMapUrl = this.tolstoiFirstFloorMapUrl;
+          this.createTolstoiFirstFloorPoints();
+          break;
+        case 2:
+          this.currentFloorMapUrl = this.tolstoiSecondFloorMapUrl;
+          this.createTolstoiSecondFloorPoints();
+          break;
       }
     }
   }
@@ -61,6 +68,10 @@ export class MapComponent implements OnInit {
     this.placeCoordinate(470, 400, "lobbyPano1");
     this.placeCoordinate(400, 400, "lobbyPano2");
     this.placeCoordinate(395, 310, "lobbyPano5");
+  }
+
+  public createTolstoiSecondFloorPoints() {
+    
   }
 
   // Places a clickable dot on the minimap
@@ -84,7 +95,7 @@ export class MapComponent implements OnInit {
     }
 
     if (offX > margin) offX -= margin;
-    if( offY > margin) offY -= margin;
+    if (offY > margin) offY -= margin;
 
     l += offX;
     t += offY;
@@ -108,6 +119,7 @@ export class MapComponent implements OnInit {
     this.selectRoomById(id);
   }
 
+  // finds element by id and replaces image with red dot image, to show where user is on map
   public selectRoomById(id: string) {
     const selectedElement = document.getElementById(id);
     const previousSelectedElement = document.getElementsByClassName('active-dot').item(0);

@@ -29,6 +29,7 @@ export class TourContainerComponent implements OnInit {
   room: string = '';
   showControls = true;
   roomToNavigateTo: string = '';
+  currentFloor = 1;
 
   constructor(private route: ActivatedRoute, private roomService: RoomNavigationService) { 
     this.roomService.currentMessage.subscribe(message =>  {
@@ -42,6 +43,9 @@ export class TourContainerComponent implements OnInit {
   ngOnInit(): void {
     this.route.data.subscribe(data => {
       this.building = data['building'];
+      if (this.building == 'teine') {
+        this.currentFloor = 2;
+      }
       console.log('Entered building ' + this.building);
     });
   }
