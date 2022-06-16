@@ -32,7 +32,7 @@ export class MapComponent implements OnInit {
       this.currentFloor = 1;
     }
     this.setupCurrentFloorMap();
-    this.createTolstoiFirstFloorPoints();
+    
 
     $('.dot').on('click', (evt) => {
       this.selectRoom(evt);
@@ -47,15 +47,17 @@ export class MapComponent implements OnInit {
   public setupCurrentFloorMap(): void {
     console.log(this.currentBuilding + this.currentFloor)
     if (this.currentBuilding == 'tolstoi' || this.currentBuilding == 'teine') {
-      switch (this.currentFloor) {
-        case 1:
-          this.currentFloorMapUrl = this.tolstoiFirstFloorMapUrl;
-          this.createTolstoiFirstFloorPoints();
-          break;
-        case 2:
-          this.currentFloorMapUrl = this.tolstoiSecondFloorMapUrl;
-          this.createTolstoiSecondFloorPoints();
-          break;
+      if (this.currentBuilding == 'teine') this.currentFloor = 2; {
+        switch (this.currentFloor) {
+          case 1:
+            this.currentFloorMapUrl = this.tolstoiFirstFloorMapUrl;
+            this.createTolstoiFirstFloorPoints();
+            break;
+          case 2:
+            this.currentFloorMapUrl = this.tolstoiSecondFloorMapUrl;
+            this.createTolstoiSecondFloorPoints();
+            break;
+        }    
       }
     }
   }
@@ -110,7 +112,30 @@ export class MapComponent implements OnInit {
     // entranceStreet ???
   }
 
-  public createTolstoiSecondFloorPoints() {}
+  public createTolstoiSecondFloorPoints() {
+    this.placeCoordinate(399, 268, "secondStartPano");
+    this.placeCoordinate(381, 200, "secondHallImage1");
+    this.placeCoordinate(393, 153, "secondHallImage2");
+    this.placeCoordinate(393, 104, "paintingHall1");
+    this.placeCoordinate(501, 107, "paintingHall2");
+    this.placeCoordinate(571, 114, "room1");
+    this.placeCoordinate(581, 148, "room2");
+    this.placeCoordinate(477, 152, "corridor1");
+    this.placeCoordinate(314, 207, "corridor2");
+    this.placeCoordinate(317, 167, "corridor3");
+    this.placeCoordinate(457, 204, "paintingLead");
+    this.placeCoordinate(309, 288, "paintingRoom");
+    this.placeCoordinate(299, 114, "restoRoom");
+    this.placeCoordinate(222, 108, "restoRoom2"); 
+    this.placeCoordinate(472, 269, "terrass1");
+    this.placeCoordinate(477, 389, "terrass2");
+    this.placeCoordinate(642, 104, "drawingClass1");
+    this.placeCoordinate(750, 108, "drawingClass2");
+    this.placeCoordinate(905, 111, "drawingClass3");
+    this.placeCoordinate(703, 184, "drawingClass4");
+    this.placeCoordinate(592,196, "stairs1");
+    this.placeCoordinate(422, 292, "stairs2");
+  }
 
   // Places a clickable dot on the minimap
   // First added dot is shown as starting point by default
