@@ -1,0 +1,26 @@
+{
+    "common": {
+        "enter": "Sisene",
+        "back": "Tagasi",
+        "exitVirtualTour": "Välju tuurist",
+        "currentLanguage": "Eesti"
+    },
+    "menu": {
+        "enrollment": "Sisseastumine",
+        "studies": "Õpingud",
+        "virtualTour": "Virtuaaltuur"
+    },
+    "ui": {
+        "chooseBuilding": "Vali hoone:",
+        "tolstoi": "Tolstoi",
+        "secondBuilding": "2. hoone",
+        "thirdBuilding": "3. hoone",
+        "mainBuildingSubtitle": "Pallase kunstikooli peahoone",
+        "secondaryBuildingSubtitle": "Pallase kunstikooli kõrvalhoone",
+        "howToUse": "Kuidas kasutada?",
+        "lookAroundGuide": "Ringi vaatamiseks hoia all hiire vasakut nuppu ning liiguta hiirt.",
+        "zoomInGuide": "Sisse- ja väljasuumimiseks keri hiire rullikut.",
+        "moveToRoomGuide": "Ruumide vahetamiseks ja infopunktide avamiseks kasuta hiire vasakut nuppu.",
+        "gotIt": "Selge!"
+    }
+}
