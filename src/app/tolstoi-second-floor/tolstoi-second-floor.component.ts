@@ -92,10 +92,12 @@ export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit, OnDes
 
   }
 
+  @Output() tourViewer = new EventEmitter<any>;
   @Output() roomMessage = new EventEmitter<string>();
 
   ngOnInit(): void {
     this.loadFloorData();
+    this.tourViewer.emit(this.viewer);
   }
 
   ngAfterViewInit(): void {

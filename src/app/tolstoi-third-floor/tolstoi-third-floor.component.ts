@@ -65,6 +65,7 @@ export class TolstoiThirdFloorComponent implements OnInit, AfterViewInit, OnDest
   }
 
   ngOnInit(): void {
+    this.loadFloorData();
     this.tourViewer.emit(this.viewer);
   }
 
