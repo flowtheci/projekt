@@ -75,7 +75,7 @@ export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit, OnDes
     output: 'console',
     momentum: false,
     controlButtons: ['setting'],
-});
+  });
 
   @Input() set goToRoom(value: string) {
     if (value == null || value == '') return;
@@ -87,7 +87,7 @@ export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit, OnDes
     const roomPano = eval("this." + room);
     this.viewer.setPanorama(roomPano);
   }
-
+  
   @Output() tourViewer = new EventEmitter<any>;
   @Output() roomMessage = new EventEmitter<string>();
   @Output() requestFloorChange = new EventEmitter<number>();
@@ -120,95 +120,149 @@ export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit, OnDes
   }
 
   public loadFloorData() {
+    
+
+    var lookAtPositions = [
+      new THREE.Vector3(4935.02, -597.10, 483.28 ),//0, secondStartPano
+      new THREE.Vector3(-790.08, -453.00, -4907.40 ),//1 secondHallImage1
+      new THREE.Vector3(4189.32, -429.88, 2680.40 ),//2 secondHallImage2
+      new THREE.Vector3(-3110.88, -457.78, -3876.08 ),//3 paintingHall1
+      new THREE.Vector3(-4906.92, -481.31, -771.76 ),//4 paintingHall2
+      new THREE.Vector3(2354.90, 15.88, 4403.36 ),//5 room1
+      new THREE.Vector3(398.76, -815.35, 4910.94 ),//6 room2
+      new THREE.Vector3(-1594.43, -231.59, 4726.61 ),//7 corridor1
+      new THREE.Vector3(4956.57, -385.39, -527.25),//8 corridor2
+      new THREE.Vector3(4527.90, -2033.98, -545.94 ),//9 corridor3
+      new THREE.Vector3(1727.60, -315.05, 4671.98 ),//10 paintingLead
+      new THREE.Vector3(-2433.02, -165.32, 4356.97 ),//11 paintingRoom
+      new THREE.Vector3(-3299.35, -1020.38, -3608.17),//12 restoRoom
+      new THREE.Vector3(2835.63, -145.47, 4105.36 ),//13 restoRoom2
+      new THREE.Vector3(-1013.13, -94.80, 4891.16 ),//14 terrass1
+      new THREE.Vector3(-3572.64, 547.60, 3441.01 ),//15 terrass2
+      new THREE.Vector3(-4211.70, -440.05, 2643.74 ),//16 drawingClass1
+      new THREE.Vector3(-4850.76, -243.90, -1151.78 ),//17 drawingClass2
+      new THREE.Vector3(1937.47, -105.51, -4600.22 ),//18 drawingClass3
+      new THREE.Vector3(-4130.18, -560.21, 2743.19),//19 drawingClass4
+      new THREE.Vector3(-591.64, -182.52, -4954.43 ),//20 stairs1
+      new THREE.Vector3(-99.46, -815.44, 4926.61 ),//21 stairs2
+    
+      ];
+
+
+
+
+
 
     // Add console log event listeners for every panorama object
     this.secondStartPano.addEventListener('enter-fade-start', () => {
       console.log('secondStartPano entered')
       this.setRoom('secondStartPano');
+      this.viewer.tweenControlCenter( lookAtPositions[0], 6000 );
     })
     this.secondHallPano.addEventListener('enter-fade-start', () => {
       console.log('secondHallImage1 entered')
       this.setRoom('secondHallPano');
+      this.viewer.tweenControlCenter( lookAtPositions[1], 0 );
     })
     this.secondHallPano2.addEventListener('enter-fade-start', () => {
       console.log('secondHallImage2 entered')
       this.setRoom('secondHallPano2');
+      this.viewer.tweenControlCenter( lookAtPositions[2], 0 );
     })
     this.paintingHallPano1.addEventListener('enter-fade-start', () => {
       console.log('paintingHall1 entered')
       this.setRoom('paintingHallPano1');
+      this.viewer.tweenControlCenter( lookAtPositions[3], 0 );
     })
     this.paintingHallPano2.addEventListener('enter-fade-start', () => {
       console.log('paintingHall2 entered')
       this.setRoom('paintingHallPano2');
+      this.viewer.tweenControlCenter( lookAtPositions[4], 0 );
     })
     this.roomPano1.addEventListener('enter-fade-start', () => {
       console.log('room1 entered')
       this.setRoom('roomPano1');
+      this.viewer.tweenControlCenter( lookAtPositions[5], 0 );
     })
     this.roomPano2.addEventListener('enter-fade-start', () => {
       console.log('room2 entered')
       this.setRoom('roomPano2');
+      this.viewer.tweenControlCenter( lookAtPositions[6], 0 );
     })
     this.corridorPano1.addEventListener('enter-fade-start', () => {
       console.log('corrdior1 entered')
       this.setRoom('corridorPano1');
+      this.viewer.tweenControlCenter( lookAtPositions[7], 0 );
     })
     this.corridorPano2.addEventListener('enter-fade-start', () => {
       console.log('corrdior2 entered')
       this.setRoom('corridorPano2');
+      this.viewer.tweenControlCenter( lookAtPositions[8], 0 );
     })
     this.corridorPano3.addEventListener('enter-fade-start', () => {
       console.log('corrdior3 entered')
       this.setRoom('corridorPano3');
+      this.viewer.tweenControlCenter( lookAtPositions[9], 0 );
     })
     this.paintingLeadPano.addEventListener('enter-fade-start', () => {
       console.log('paintingLead entered')
       this.setRoom('paintingLeadPano');
+      this.viewer.tweenControlCenter( lookAtPositions[10], 0 );
     })
     this.paintingRoomPano.addEventListener('enter-fade-start', () => {
       console.log('paintingRoom entered')
       this.setRoom('paintingRoomPano');
+      this.viewer.tweenControlCenter( lookAtPositions[11], 0 );
     })
     this.restoRoomPano.addEventListener('enter-fade-start', () => {
       console.log('restoRoom entered')
       this.setRoom('restoRoomPano');
+      this.viewer.tweenControlCenter( lookAtPositions[12], 0 );
     })
     this.restoRoomPano2.addEventListener('enter-fade-start', () => {
       console.log('restoRoom2 entered')
       this.setRoom('restoRoomPano2');
+      this.viewer.tweenControlCenter( lookAtPositions[13], 0 );
     })
     this.terrassPano1.addEventListener('enter-fade-start', () => {
       console.log('terrass1 entered')
       this.setRoom('terrassPano1');
+      this.viewer.tweenControlCenter( lookAtPositions[14], 0 );
     })
     this.terrassPano2.addEventListener('enter-fade-start', () => {
       console.log('terrass2 entered')
       this.setRoom('terrassPano2');
+      this.viewer.tweenControlCenter( lookAtPositions[15], 0 );
     })
     this.drawingClassPano1.addEventListener('enter-fade-start', () => {
       console.log('drawingClass1 entered')
       this.setRoom('drawingClassPano1');
+      this.viewer.tweenControlCenter( lookAtPositions[16], 0 );
     })
     this.drawingClassPano2.addEventListener('enter-fade-start', () => {
       console.log('drawingClass2 entered')
       this.setRoom('drawingClassPano2');
+      this.viewer.tweenControlCenter( lookAtPositions[17], 0 );
     })
     this.drawingClassPano3.addEventListener('enter-fade-start', () => {
       console.log('drawingClass3 entered')
       this.setRoom('drawingClassPano3');
+      this.viewer.tweenControlCenter( lookAtPositions[18], 0 );
     })
     this.drawingClassPano4.addEventListener('enter-fade-start', () => {
       console.log('drawingClass4 entered')
       this.setRoom('drawingClassPano4');
+      this.viewer.tweenControlCenter( lookAtPositions[19], 0 );
     })
     this.stairsPano1.addEventListener('enter-fade-start', () => {
       console.log('stairs1 entered')
       this.setRoom('stairsPano1');
+      this.viewer.tweenControlCenter( lookAtPositions[20], 0 );
     })
     this.stairsPano2.addEventListener('enter-fade-start', () => {
       console.log('stairs2 entered')
       this.setRoom('stairsPano2');
+      this.viewer.tweenControlCenter( lookAtPositions[21], 0 );
     })
 
     this.viewer.add(this.secondStartPano);

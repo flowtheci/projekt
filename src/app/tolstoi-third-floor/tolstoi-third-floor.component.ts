@@ -1,19 +1,19 @@
-import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import * as THREE from '../../lib/three.js';
 import Panolens from '../../lib/panolens';
+import { Input, Output, EventEmitter } from '@angular/core';
 const TWEEN = Panolens.TWEEN;
 const PANOLENS = Panolens.PANOLENS;
+
 
 @Component({
   selector: 'app-tolstoi-third-floor',
   templateUrl: './tolstoi-third-floor.component.html',
-  styleUrls: ['./tolstoi-third-floor-component.scss']
+  styleUrls: ['./tolstoi-third-floor.component.scss']
 })
 export class TolstoiThirdFloorComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  constructor() { }
-
+  pano = PANOLENS;
   selectedRoom: string = '';
 
   @Input() set goToRoom(value: string) {
@@ -22,12 +22,7 @@ export class TolstoiThirdFloorComponent implements OnInit, AfterViewInit, OnDest
     this.navigateToRoom(value);
   }
 
-  navigateToRoom(room: string) {
-    const roomPano = eval("this." + room);
-    this.viewer.setPanorama(roomPano);
-  }
 
-  
 
   @Output() tourViewer = new EventEmitter<any>;
   @Output() roomMessage = new EventEmitter<string>();
@@ -35,6 +30,45 @@ export class TolstoiThirdFloorComponent implements OnInit, AfterViewInit, OnDest
 
   changeFloor(floor: number) {
     this.requestFloorChange.emit(floor);
+ 
+ }
+  stairsImage = 'assets/Tolstoi/3.korrus/3_3_300 trepp alla-Edit.jpg'
+  hallwayImage = 'assets/Tolstoi/3.korrus/3_3_300-Edit.jpg'
+  workroomImage = 'assets/Tolstoi/3.korrus/3_3_302-Edit.jpg'
+  workroom2Image = 'assets/Tolstoi/3.korrus/3_3_308-Edit.jpg'
+  workroom3Image = 'assets/Tolstoi/3.korrus/3_3_309-Edit.jpg'
+  workroom4Image = 'assets/Tolstoi/3.korrus/3_3_310-Edit.jpg'
+  hallway2Image = 'assets/Tolstoi/3.korrus/3_3_314 koridor 1.1-Edit.jpg'
+  hallway3Image = 'assets/Tolstoi/3.korrus/3_3_314 koridor 1.2-Edit.jpg'
+  hallway4Image = 'assets/Tolstoi/3.korrus/3_3_314 koridor 1.3-Edit.jpg'
+  roomImage = 'assets/Tolstoi/3.korrus/3_3_315-Edit.jpg'
+  hallway5Image = 'assets/Tolstoi/3.korrus/3_3_316a-Edit.jpg'
+  workroom5Image = 'assets/Tolstoi/3.korrus/3_3_319 1.1-Edit.jpg'
+  workroom6Image = 'assets/Tolstoi/3.korrus/3_3_319 1.2-Edit.jpg'
+  hallway6Image = 'assets/Tolstoi/3.korrus/3_3_koridor 1.4-Edit.jpg'
+ 
+ 
+ 
+  stairsPano = new PANOLENS.ImagePanorama(this.stairsImage)
+  hallwayPano = new PANOLENS.ImagePanorama(this.hallwayImage)
+  workroomPano = new PANOLENS.ImagePanorama(this.workroomImage)
+  workroom2Pano = new PANOLENS.ImagePanorama(this.workroom2Image)
+  workroom3Pano = new PANOLENS.ImagePanorama(this.workroom3Image)
+  workroom4Pano = new PANOLENS.ImagePanorama(this.workroom4Image)
+  hallway2Pano = new PANOLENS.ImagePanorama(this.hallway2Image)
+  hallway3Pano = new PANOLENS.ImagePanorama(this.hallway3Image)
+  hallway4Pano = new PANOLENS.ImagePanorama(this.hallway4Image)
+  roomPano = new PANOLENS.ImagePanorama(this.roomImage)
+  hallway5Pano = new PANOLENS.ImagePanorama(this.hallway5Image)
+  workroom5Pano = new PANOLENS.ImagePanorama(this.workroom5Image)
+  workroom6Pano = new PANOLENS.ImagePanorama(this.workroom6Image)
+  hallway6Pano = new PANOLENS.ImagePanorama(this.hallway6Image)
+
+  constructor() { }
+
+  setRoom(room: string) {
+    this.selectedRoom = room;
+    this.roomMessage.emit(this.selectedRoom)
   }
 
   ngOnInit(): void {
@@ -43,7 +77,7 @@ export class TolstoiThirdFloorComponent implements OnInit, AfterViewInit, OnDest
   }
 
   ngAfterViewInit(): void {
-
+    this.loadFloorData();
   }
 
   ngOnDestroy(): void {
@@ -53,50 +87,45 @@ export class TolstoiThirdFloorComponent implements OnInit, AfterViewInit, OnDest
   viewer = new PANOLENS.Viewer({
     output: 'console',
     momentum: false,
-    controlButtons: ['setting'],
 });
 
-  public disposePanoramaContainer() {
-    this.viewer.destroy();
-    const elements = document.getElementsByClassName('panolens-container');
-    while (elements.length > 0) {
+public disposePanoramaContainer(){
+  this.viewer.destroy();
+  const elements = document.getElementsByClassName('panolens-container');
+  while(elements.length > 0){
       elements[0].parentNode?.removeChild(elements[0]);
-    }
   }
+}
+
+public getCurrentRoom() {
+  return this.selectedRoom;
+}
+
+navigateToRoom(room: string) {
+  const roomPano = eval("this." + room);
+  this.viewer.setPanorama(roomPano);
+}
+
 
   public loadFloorData() {
 
-const stairsImage = 'assets/Tolstoi/3.korrus/3_3_300 trepp alla-Edit.jpg'
-const hallwayImage = 'assets/Tolstoi/3.korrus/3_3_300-Edit.jpg'
-const workroomImage = 'assets/Tolstoi/3.korrus/3_3_302-Edit.jpg'
-const workroom2Image = 'assets/Tolstoi/3.korrus/3_3_308-Edit.jpg'
-const workroom3Image = 'assets/Tolstoi/3.korrus/3_3_309-Edit.jpg'
-const workroom4Image = 'assets/Tolstoi/3.korrus/3_3_310-Edit.jpg'
-const hallway2Image = 'assets/Tolstoi/3.korrus/3_3_314 koridor 1.1-Edit.jpg'
-const hallway3Image = 'assets/Tolstoi/3.korrus/3_3_314 koridor 1.2-Edit.jpg'
-const hallway4Image = 'assets/Tolstoi/3.korrus/3_3_314 koridor 1.3-Edit.jpg'
-const roomImage = 'assets/Tolstoi/3.korrus/3_3_315-Edit.jpg'
-const hallway5Image = 'assets/Tolstoi/3.korrus/3_3_316a-Edit.jpg'
-const workroom5Image = 'assets/Tolstoi/3.korrus/3_3_319 1.1-Edit.jpg'
-const workroom6Image = 'assets/Tolstoi/3.korrus/3_3_319 1.2-Edit.jpg'
-const hallway6Image = 'assets/Tolstoi/3.korrus/3_3_koridor 1.4-Edit.jpg'
+  //järjekord
+  this.viewer.add(this.stairsPano);
+  this.viewer.add(this.hallwayPano);
+  this.viewer.add(this.hallway4Pano);
+  this.viewer.add(this.hallway6Pano);
+  this.viewer.add(this.workroomPano);
+  this.viewer.add(this.hallway3Pano);
+  this.viewer.add(this.workroom2Pano);
+  this.viewer.add(this.workroom3Pano);
+  this.viewer.add(this.workroom4Pano);
+  this.viewer.add(this.hallway2Pano);
+  this.viewer.add(this.roomPano);
+  this.viewer.add(this.hallway5Pano);
+  this.viewer.add(this.workroom5Pano);
+  this.viewer.add(this.workroom6Pano);
 
 
-
-const stairsPano = new PANOLENS.ImagePanorama(stairsImage)
-const hallwayPano = new PANOLENS.ImagePanorama(hallwayImage)
-const workroomPano = new PANOLENS.ImagePanorama(workroomImage)
-const workroom2Pano = new PANOLENS.ImagePanorama(workroom2Image)
-const workroom3Pano = new PANOLENS.ImagePanorama(workroom3Image)
-const workroom4Pano = new PANOLENS.ImagePanorama(workroom4Image)
-const hallway2Pano = new PANOLENS.ImagePanorama(hallway2Image)
-const hallway3Pano = new PANOLENS.ImagePanorama(hallway3Image)
-const hallway4Pano = new PANOLENS.ImagePanorama(hallway4Image)
-const roomPano = new PANOLENS.ImagePanorama(roomImage)
-const hallway5Pano = new PANOLENS.ImagePanorama(hallway5Image)
-const workroom5Pano = new PANOLENS.ImagePanorama(workroom5Image)
-const workroom6Pano = new PANOLENS.ImagePanorama(workroom6Image)
-const hallway6Pano = new PANOLENS.ImagePanorama(hallway6Image)
 
 var lookAtPositions3 = [
     new THREE.Vector3(-4779.06, -771.01, 1223.94 ),//0, stairs .....
@@ -118,140 +147,137 @@ var lookAtPositions3 = [
   
   
   //add console
-  stairsPano.addEventListener('enter-fade-start', () => {
+  this.stairsPano.addEventListener('enter-fade-start', () => {
       console.log('stairsPano entered')
-      this.viewer.tweenControlCenter( lookAtPositions3[0], 6000 );
+      this.setRoom('stairsPano');
+      this.viewer.tweenControlCenter( lookAtPositions3[0], 0 );
   })
 
-  hallwayPano.addEventListener('enter-fade-start', () => {
+  this.hallwayPano.addEventListener('enter-fade-start', () => {
       console.log('hallwayPano entered')
-      this.viewer.tweenControlCenter( lookAtPositions3[1], 0 );
+      this.setRoom('hallwayPano');
+      this.viewer.tweenControlCenter( lookAtPositions3[1], 0);
   })
-  workroomPano.addEventListener('enter-fade-start', () => {
+  this.workroomPano.addEventListener('enter-fade-start', () => {
       console.log('workroomPano entered')
+      this.setRoom('workroomPano');
       this.viewer.tweenControlCenter( lookAtPositions3[2], 0 );
   })
-  workroom2Pano.addEventListener('enter-fade-start', () => {
+  this.workroom2Pano.addEventListener('enter-fade-start', () => {
       console.log('workroom2Pano entered')
+      this.setRoom('workroom2Pano');
       this.viewer.tweenControlCenter( lookAtPositions3[3], 0 );
   })
-  workroom3Pano.addEventListener('enter-fade-start', () => {
+  this.workroom3Pano.addEventListener('enter-fade-start', () => {
       console.log('workroom3Pano entered')
+      this.setRoom('workroom3Pano');
       this.viewer.tweenControlCenter( lookAtPositions3[4], 0 );
   })
-  workroom4Pano.addEventListener('enter-fade-start', () => {
+  this.workroom4Pano.addEventListener('enter-fade-start', () => {
       console.log('workroom4Pano entered')
+      this.setRoom('workroom4Pano');
       this.viewer.tweenControlCenter( lookAtPositions3[5], 0 );
   })
-  hallway2Pano.addEventListener('enter-fade-start', () => {
+  this.hallway2Pano.addEventListener('enter-fade-start', () => {
       console.log('hallway2Pano entered')
+      this.setRoom('hallway2Pano');
       this.viewer.tweenControlCenter( lookAtPositions3[6], 0 );
   })
-  hallway3Pano.addEventListener('enter-fade-start', () => {
+  this.hallway3Pano.addEventListener('enter-fade-start', () => {
       console.log('hallway3Pano entered')
+      this.setRoom('hallway3Pano');
       this.viewer.tweenControlCenter( lookAtPositions3[7], 0 );
   })
-  hallway4Pano.addEventListener('enter-fade-start', () => {
+  this.hallway4Pano.addEventListener('enter-fade-start', () => {
       console.log('hallway4Pano entered')
-      this.viewer.tweenControlCenter( lookAtPositions3[8], 0 );
+      this.setRoom('hallway4Pano');
+      this.viewer.tweenControlCenter( lookAtPositions3[8], 0);
   })
-  roomPano.addEventListener('enter-fade-start', () => {
+  this.roomPano.addEventListener('enter-fade-start', () => {
       console.log('roomPano entered')
+      this.setRoom('roomPano');
       this.viewer.tweenControlCenter( lookAtPositions3[9], 0 );
   })
-  hallway5Pano.addEventListener('enter-fade-start', () => {
+  this.hallway5Pano.addEventListener('enter-fade-start', () => {
       console.log('hallway5Pano entered')
+      this.setRoom('hallway5Pano');
       this.viewer.tweenControlCenter( lookAtPositions3[10], 0 );
   })
-  workroom5Pano.addEventListener('enter-fade-start', () => {
+  this.workroom5Pano.addEventListener('enter-fade-start', () => {
       console.log('workroom5Pano entered')
+      this.setRoom('workroom5Pano');
       this.viewer.tweenControlCenter( lookAtPositions3[11], 0 );
   })
-  workroom6Pano.addEventListener('enter-fade-start', () => {
+  this.workroom6Pano.addEventListener('enter-fade-start', () => {
       console.log('workroom6Pano entered')
+      this.setRoom('workroom6Pano');
       this.viewer.tweenControlCenter( lookAtPositions3[12], 0 );
   })
-  hallway6Pano.addEventListener('enter-fade-start', () => {
+  this.hallway6Pano.addEventListener('enter-fade-start', () => {
       console.log('hallway6Pano entered')
+      this.setRoom('hallway6Pano');
       this.viewer.tweenControlCenter( lookAtPositions3[13], 0 );
   })
   
   
-  //järjekord
-  
 
-
-this.viewer.add(stairsPano);
-this.viewer.add(hallwayPano);
-this.viewer.add(hallway4Pano);
-this.viewer.add(hallway6Pano);
-this.viewer.add(workroomPano);
-this.viewer.add(hallway3Pano);
-this.viewer.add(workroom2Pano);
-this.viewer.add(workroom3Pano);
-this.viewer.add(workroom4Pano);
-this.viewer.add(hallway2Pano);
-this.viewer.add(roomPano);
-this.viewer.add(hallway5Pano);
-this.viewer.add(workroom5Pano);
-this.viewer.add(workroom6Pano);
 
 // link panoramas with points
 // trepist üles minek 
-stairsPano.link(hallwayPano, new THREE.Vector3(-4786.19, -1212.11, 736.90));
+this.stairsPano.link(this.hallwayPano, new THREE.Vector3(-4786.19, -1212.11, 736.90));
 
 // läbi ukse minek koridori
-hallwayPano.link(stairsPano, new THREE.Vector3(-3428.38, -3609.56, 412.66));
-hallwayPano.link(hallway4Pano, new THREE.Vector3(4507.22, -1918.81, -992.75));
+this.hallwayPano.link(this.stairsPano, new THREE.Vector3(-3428.38, -3609.56, 412.66));
+this.hallwayPano.link(this.hallway4Pano, new THREE.Vector3(4507.22, -1918.81, -992.75));
 
 // esimene kolmest koridori osast
-hallway4Pano.link(hallwayPano, new THREE.Vector3(4094.17, -211.60, -2848.10));
-hallway4Pano.link(hallway6Pano, new THREE.Vector3(-2965.87, -1046.58, -3876.58)); 
-hallway4Pano.link(hallway3Pano, new THREE.Vector3(2317.11, -2385.64, 3722.85));
-hallway4Pano.link(workroom3Pano, new THREE.Vector3(4704.67, -307.57, -1643.26));
+this.hallway4Pano.link(this.hallwayPano, new THREE.Vector3(4094.17, -211.60, -2848.10));
+this.hallway4Pano.link(this.hallway6Pano, new THREE.Vector3(-2965.87, -1046.58, -3876.58)); 
+this.hallway4Pano.link(this.hallway3Pano, new THREE.Vector3(2317.11, -2385.64, 3722.85));
+this.hallway4Pano.link(this.workroom3Pano, new THREE.Vector3(4704.67, -307.57, -1643.26));
 
 
 // ühendus töötoa 302-ga
-hallway6Pano.link(hallway4Pano, new THREE.Vector3(2019.01, -943.72, 4470.19));
-hallway6Pano.link(workroomPano, new THREE.Vector3(-3862.49, -1504.86, -2792.19));
+this.hallway6Pano.link(this.hallway4Pano, new THREE.Vector3(2019.01, -943.72, 4470.19));
+this.hallway6Pano.link(this.workroomPano, new THREE.Vector3(-3862.49, -1504.86, -2792.19));
 
 // tagasi tee ruumist 302
-workroomPano.link(hallway6Pano, new THREE.Vector3(-2645.00, -856.99, 4144.94));
+this.workroomPano.link(this.hallway6Pano, new THREE.Vector3(-2645.00, -856.99, 4144.94));
 
 // keskmine koridori osa, kus on ühendus veel ruumi 308 ja 309-ga
-hallway3Pano.link(hallway4Pano, new THREE.Vector3(4639.50, -1816.09, 301.64)); //
-hallway3Pano.link(workroom2Pano, new THREE.Vector3(469.02, -2138.35, -4491.12)); //
+this.hallway3Pano.link(this.hallway4Pano, new THREE.Vector3(4639.50, -1816.09, 301.64)); //
+this.hallway3Pano.link(this.workroom2Pano, new THREE.Vector3(469.02, -2138.35, -4491.12)); //
 //hallway3Pano.link(workroom3Pano, new THREE.Vector3(1701.72, -1990.38, -4250.08));
-hallway3Pano.link(hallway2Pano, new THREE.Vector3(-4834.51, -1205.77, -314.25)); //
+this.hallway3Pano.link(this.hallway2Pano, new THREE.Vector3(-4834.51, -1205.77, -314.25)); //
 
 //väljapääs ruumist 308
-workroom2Pano.link(hallway3Pano, new THREE.Vector3(-3336.82, -1467.54, 3409.84));
+this.workroom2Pano.link(this.hallway3Pano, new THREE.Vector3(-3336.82, -1467.54, 3409.84));
 
 //ruum 309 ja 310 ühendus
-workroom3Pano.link(hallway4Pano, new THREE.Vector3(-207.15, -971.50, 4889.93));
-workroom3Pano.link(workroom4Pano, new THREE.Vector3(-1669.84, -998.12, -4595.60));
+this.workroom3Pano.link(this.hallway4Pano, new THREE.Vector3(-207.15, -971.50, 4889.93));
+this.workroom3Pano.link(this.workroom4Pano, new THREE.Vector3(-1669.84, -998.12, -4595.60));
 
 // väljapääs ruumist 310
-workroom4Pano.link(workroom3Pano, new THREE.Vector3(-3549.77, -1452.71, -3202.80));
+this.workroom4Pano.link(this.workroom3Pano, new THREE.Vector3(-3549.77, -1452.71, -3202.80));
 
 // 3 punkt koridoris
-hallway2Pano.link(hallway3Pano, new THREE.Vector3(-4464.21, -2221.32, 252.63));
-hallway2Pano.link(roomPano, new THREE.Vector3(59.12, -1769.10, 4669.54)); //
-hallway2Pano.link(hallway5Pano, new THREE.Vector3(564.67, -1552.36, -4715.81)); //
-hallway2Pano.link(workroom5Pano, new THREE.Vector3(4802.97, -1364.06, -64.21)); //
+this.hallway2Pano.link(this.hallway3Pano, new THREE.Vector3(-4464.21, -2221.32, 252.63));
+this.hallway2Pano.link(this.roomPano, new THREE.Vector3(59.12, -1769.10, 4669.54)); //
+this.hallway2Pano.link(this.hallway5Pano, new THREE.Vector3(564.67, -1552.36, -4715.81)); //
+this.hallway2Pano.link(this.workroom5Pano, new THREE.Vector3(4802.97, -1364.06, -64.21)); //
 
 //ruumist 315 välja
-roomPano.link(hallway2Pano, new THREE.Vector3(4516.35, -2128.79, 71.82)); //
+this.roomPano.link(this.hallway2Pano, new THREE.Vector3(4516.35, -2128.79, 71.82)); //
 
 //ruumist 316a välja
-hallway5Pano.link(hallway2Pano, new THREE.Vector3(-4516.73, -1593.02, 1422.91)); //
+this.hallway5Pano.link(this.hallway2Pano, new THREE.Vector3(-4516.73, -1593.02, 1422.91)); //
 
 //ruum 320 või 319
-workroom5Pano.link(hallway2Pano, new THREE.Vector3(-2635.49, -448.01, 4215.93));
-workroom5Pano.link(workroom6Pano, new THREE.Vector3(-1161.17, -339.51, -4844.36));
+this.workroom5Pano.link(this.hallway2Pano, new THREE.Vector3(-2635.49, -448.01, 4215.93));
+this.workroom5Pano.link(this.workroom6Pano, new THREE.Vector3(-1161.17, -339.51, -4844.36));
 
 //ruumist 319 välja
-workroom6Pano.link(workroom5Pano, new THREE.Vector3(4478.47, -421.70, 2167.31));
+this.workroom6Pano.link(this.workroom5Pano, new THREE.Vector3(4478.47, -421.70, 2167.31));
 
   // Floor change button
     const goDownFloor = new PANOLENS.Infospot();
@@ -259,9 +285,13 @@ workroom6Pano.link(workroom5Pano, new THREE.Vector3(4478.47, -421.70, 2167.31));
     goDownFloor.addEventListener('click', () => {
       this.changeFloor(2);
     });
-    stairsPano.add(goDownFloor);
+    this.stairsPano.add(goDownFloor);
 
 window.dispatchEvent(new Event('resize'));
   }
 
+}
+
+function room(room: any, string: any) {
+  throw new Error('Function not implemented.');
 }
