@@ -133,6 +133,7 @@ export class TolstoiFirstFloorComponent implements OnInit, AfterViewInit, OnDest
   viewer = new PANOLENS.Viewer({
     output: 'console',
     momentum: false,
+    controlButtons: ['setting'],
 });
 
 public disposePanoramaContainer(){

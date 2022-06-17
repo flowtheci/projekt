@@ -74,7 +74,8 @@ export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit, OnDes
   viewer = new PANOLENS.Viewer({
     output: 'console',
     momentum: false,
-  });
+    controlButtons: ['setting'],
+});
 
   @Input() set goToRoom(value: string) {
     if (value == null || value == '') return;
