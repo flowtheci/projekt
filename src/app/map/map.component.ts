@@ -20,6 +20,7 @@ export class MapComponent implements OnInit {
   addedPoints = 0;
   tolstoiFirstFloorMapUrl: string = './assets/Tolstoi/1.korrus/1korruskaart.jpg';
   tolstoiSecondFloorMapUrl: string = './assets/Tolstoi/2korrus/2korruskaart.jpg';
+  tolstoiThirdFloorMapUrl: string = './assets/Tolstoi/3.korrus/3korrusekaartt.jpg';
 
   constructor(private route: ActivatedRoute, private roomService: RoomNavigationService) { 
   }
@@ -45,8 +46,9 @@ export class MapComponent implements OnInit {
 
   public setupCurrentFloorMap(): void {
     console.log(this.currentBuilding + this.currentFloor)
-    if (this.currentBuilding == 'tolstoi' || this.currentBuilding == 'teine') {
+    if (this.currentBuilding == 'tolstoi' || this.currentBuilding == 'teine' || this.currentBuilding == 'kolmas') {
       if (this.currentBuilding == 'teine') this.currentFloor = 2; {
+        if (this.currentBuilding == 'kolmas') this.currentFloor = 3; {
         switch (this.currentFloor) {
           case 1:
             this.currentFloorMapUrl = this.tolstoiFirstFloorMapUrl;
@@ -56,6 +58,11 @@ export class MapComponent implements OnInit {
             this.currentFloorMapUrl = this.tolstoiSecondFloorMapUrl;
             this.createTolstoiSecondFloorPoints();
             break;
+          case 3:
+            this.currentFloorMapUrl = this.tolstoiThirdFloorMapUrl;
+            this.createTolstoiThirdFloorPoints();
+            break;
+          }
         }    
       }
     }
@@ -134,6 +141,24 @@ export class MapComponent implements OnInit {
     this.placeCoordinate(703, 184, "drawingClass4");
     this.placeCoordinate(592,196, "stairs1");
     this.placeCoordinate(422, 292, "stairs2");
+  }
+
+  public createTolstoiThirdFloorPoints() {
+    this.placeCoordinate(256, 367, "stairsPano");
+    this.placeCoordinate(256, 300, "hallwayPano");
+    this.placeCoordinate(140, 316, "workroomPano");
+    this.placeCoordinate(348, 96, "workroom2Pano");
+    this.placeCoordinate(338, 255, "workroom3Pano");
+    this.placeCoordinate(432, 251, "workroom4Pano");
+    this.placeCoordinate(500, 131, "hallway2Pano");
+    this.placeCoordinate(351, 127, "hallway3Pano");
+    this.placeCoordinate(271, 140, "hallway4Pano");
+    this.placeCoordinate(492, 73, "roomPano"); 
+    this.placeCoordinate(505, 180, "hallway5Pano");
+    this.placeCoordinate(650, 120, "workroom5Pano");
+    this.placeCoordinate(864, 120, "workroom6Pano");
+    this.placeCoordinate(175, 268, "hallway6Pano");
+    
   }
 
   // Places a clickable dot on the minimap

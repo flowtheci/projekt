@@ -36,8 +36,7 @@ export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit, OnDes
 
   navigateToRoom(room: string) {
     const roomPano = eval("this." + room);
-    this.viewer.dispose();
-    this.viewer.add(roomPano);
+    this.viewer.setPanorama(roomPano)
   }
 
   @Output() roomMessage = new EventEmitter<string>();
