@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 
 import * as THREE from '../../lib/three.js';
 import Panolens from '../../lib/panolens';
@@ -12,7 +12,23 @@ const PANOLENS = Panolens.PANOLENS;
 })
 export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit, OnDestroy {
 
+
   constructor() { }
+
+  selectedRoom: string = '';
+
+  @Input() set goToRoom(value: string) {
+    if (value == null || value == '') return;
+    console.log("Navigation event received, attempting navigation...");
+    this.navigateToRoom(value);
+  }
+
+  navigateToRoom(room: string) {
+  const roomPano = eval("this." + room);
+  this.viewer.setPanorama(roomPano);
+  }
+
+  @Output() roomMessage = new EventEmitter<string>();
 
   ngOnInit(): void {
     this.loadFloorData();
