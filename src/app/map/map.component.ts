@@ -119,10 +119,10 @@ export class MapComponent implements OnInit {
     this.placeCoordinate(501, 107, "paintingHallPano2");
     this.placeCoordinate(571, 114, "roomPano1");
     this.placeCoordinate(581, 148, "roomPano2");
-    this.placeCoordinate(477, 152, "corridorPano1");
+    this.placeCoordinate(501, 151, "corridorPano1");
     this.placeCoordinate(314, 207, "corridorPano2");
     this.placeCoordinate(317, 167, "corridorPano3");
-    this.placeCoordinate(457, 204, "paintingLeadPano");
+    this.placeCoordinate(485, 208, "paintingLeadPano");
     this.placeCoordinate(309, 288, "paintingRoomPano");
     this.placeCoordinate(299, 114, "restoRoomPano");
     this.placeCoordinate(222, 108, "restoRoomPano2"); 
@@ -131,8 +131,8 @@ export class MapComponent implements OnInit {
     this.placeCoordinate(642, 104, "drawingClassPano1");
     this.placeCoordinate(750, 108, "drawingClassPano2");
     this.placeCoordinate(905, 111, "drawingClassPano3");
-    this.placeCoordinate(703, 184, "drawingClassPano4");
-    this.placeCoordinate(592,196, "stairsPano1");
+    this.placeCoordinate(710, 208, "drawingClassPano4");
+    this.placeCoordinate(597, 215, "stairsPano1");
     this.placeCoordinate(422, 292, "stairsPano2");
   }
 
