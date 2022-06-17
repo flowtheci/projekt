@@ -84,17 +84,17 @@ export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit, OnDes
   }
 
   navigateToRoom(room: string) {
-    try {
-      const roomPano = eval("this." + room);
-      this.viewer.setPanorama(roomPano);
-    } catch (e)   {
-      console.error(e);
-    }
-
+    const roomPano = eval("this." + room);
+    this.viewer.setPanorama(roomPano);
   }
 
   @Output() tourViewer = new EventEmitter<any>;
   @Output() roomMessage = new EventEmitter<string>();
+  @Output() requestFloorChange = new EventEmitter<number>();
+
+  changeFloor(floor: number) {
+    this.requestFloorChange.emit(floor);
+  }
 
   ngOnInit(): void {
     this.loadFloorData();
@@ -283,6 +283,22 @@ export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit, OnDes
     this.stairsPano1.link(this.roomPano2, new THREE.Vector3(-1694.59, -3406.45, -3232.88));
     this.secondStartPano.link(this.stairsPano2, new THREE.Vector3(-149.91, -1735.03, -4677.35));
     this.stairsPano2.link(this.secondStartPano, new THREE.Vector3(2745.30, -3672.10, 1984.35));
+
+      // Floor change button
+    const goDownFloor = new PANOLENS.Infospot();
+    goDownFloor.position.set(-4658.78, -1540.12, 950.85);
+    goDownFloor.addEventListener('click', () => {
+      this.changeFloor(1);
+    });
+    this.secondStartPano.add(goDownFloor);
+
+    const goUpFloor = new PANOLENS.Infospot();
+    goUpFloor.position.set(-4658.78, 1540.12, 950.85);
+    goUpFloor.addEventListener('click', () => {
+      this.changeFloor(3);
+    });
+    this.secondStartPano.add(goUpFloor);
+
 
     window.dispatchEvent(new Event('resize'));
   }

@@ -23,6 +23,7 @@ export class TolstoiFirstFloorComponent implements OnInit, AfterViewInit, OnDest
  }
   @Output() roomMessage = new EventEmitter<string>();
   @Output() tourViewer = new EventEmitter<any>;
+  @Output() requestFloorChange = new EventEmitter<number>();
 
   // Load all images as constants
   entranceImage = 'assets/Tolstoi/1.korrus/tolstoi-siseou.jpg'
@@ -116,6 +117,10 @@ export class TolstoiFirstFloorComponent implements OnInit, AfterViewInit, OnDest
   setRoom(room: string) {
     this.selectedRoom = room;
     this.roomMessage.emit(this.selectedRoom)
+  }
+
+  changeFloor(floor: number) {
+    this.requestFloorChange.emit(floor);
   }
 
   ngOnInit(): void {
@@ -363,7 +368,13 @@ public loadFloorData() {
   this.room117.link(this.room118, new THREE.Vector3(-4584.88, -783.12, 1816.94));
   this.room117.link(this.entranceStreet, new THREE.Vector3(4676.81, -525.41, -1662.65));
 
-
+  // Floor change button
+  const goUpFloor = new PANOLENS.Infospot();
+  goUpFloor.position.set(3261.29, -113.31, 3778.32);
+  goUpFloor.addEventListener('click', () => {
+    this.changeFloor(2);
+  });
+  this.lobbyPano3.add(goUpFloor);
 
 
 

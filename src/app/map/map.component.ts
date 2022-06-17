@@ -56,8 +56,8 @@ export class MapComponent implements OnInit {
 
   addedPoints = 0;
   isMapPanelOpen = false;
-  tolstoiFirstFloorMapUrl: string = './assets/Tolstoi/1.korrus/1korruskaart.jpg';
-  tolstoiSecondFloorMapUrl: string = './assets/Tolstoi/2korrus/2korruskaart.jpg';
+  tolstoiFirstFloorMapUrl: string = 'assets/Tolstoi/1.korrus/1korruskaart.jpg';
+  tolstoiSecondFloorMapUrl: string = 'assets/Tolstoi/2korrus/2korruskaart.jpg';
 
   constructor(private route: ActivatedRoute, private roomService: RoomNavigationService) { 
   }

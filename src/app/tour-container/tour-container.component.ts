@@ -38,6 +38,9 @@ export class TourContainerComponent implements OnInit {
   roomToNavigateTo: string = '';
   currentFloor = 1;
   viewer: any;
+  usingTolstoiBuilding = false;
+  usingSecondBuilding = false;
+  usingThirdBuilding = false;
 
   constructor(private route: ActivatedRoute, private roomService: RoomNavigationService) { 
     this.roomService.currentMessage.subscribe(message =>  {
@@ -51,8 +54,19 @@ export class TourContainerComponent implements OnInit {
   ngOnInit(): void {
     this.route.data.subscribe(data => {
       this.building = data['building'];
-      if (this.building == 'teine') {
-        this.currentFloor = 2;
+      switch (this.building) {
+        case 'tolstoi':
+          this.usingTolstoiBuilding = true;
+          this.currentFloor = 1;
+          break;
+        case 'teine':
+          this.usingSecondBuilding = true;
+          this.currentFloor = 2;
+          break;
+        case 'kolmas':
+          this.usingThirdBuilding = true;
+          this.currentFloor = 3;
+          break;
       }
       console.log('Entered building ' + this.building);
     });
@@ -72,6 +86,30 @@ export class TourContainerComponent implements OnInit {
     this.viewer = event;
     console.warn("found viewer!")
     console.warn(event);
+  }
+
+  resetContainer(floor: number) {
+    this.usingTolstoiBuilding = false;
+    this.usingSecondBuilding = false;
+    this.usingThirdBuilding = false;
+    this.currentFloor = floor;
+    switch (floor) {
+      case 1:
+        this.usingTolstoiBuilding = true;
+        break;
+      case 2:
+        this.usingSecondBuilding = true;
+        break;
+      case 3:
+        this.usingThirdBuilding = true;
+        break;
+    }
+  }
+
+  changeFloor(event: any) {
+    const newFloor = event as number;
+    console.log("Changing to floor " + newFloor)
+    this.resetContainer(newFloor);
   }
 
   zoomIn() {

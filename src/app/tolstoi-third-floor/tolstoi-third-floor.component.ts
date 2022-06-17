@@ -27,8 +27,15 @@ export class TolstoiThirdFloorComponent implements OnInit, AfterViewInit, OnDest
     this.viewer.setPanorama(roomPano);
   }
 
+  
+
   @Output() tourViewer = new EventEmitter<any>;
   @Output() roomMessage = new EventEmitter<string>();
+  @Output() requestFloorChange = new EventEmitter<number>();
+
+  changeFloor(floor: number) {
+    this.requestFloorChange.emit(floor);
+  }
 
   ngOnInit(): void {
     this.loadFloorData();
@@ -245,6 +252,14 @@ workroom5Pano.link(workroom6Pano, new THREE.Vector3(-1161.17, -339.51, -4844.36)
 
 //ruumist 319 välja
 workroom6Pano.link(workroom5Pano, new THREE.Vector3(4478.47, -421.70, 2167.31));
+
+  // Floor change button
+    const goDownFloor = new PANOLENS.Infospot();
+    goDownFloor.position.set(1039.68, -3050.99, 3812.13);
+    goDownFloor.addEventListener('click', () => {
+      this.changeFloor(2);
+    });
+    stairsPano.add(goDownFloor);
 
 window.dispatchEvent(new Event('resize'));
   }

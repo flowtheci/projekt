@@ -4,15 +4,15 @@
 <div *ngIf="showControls" [@inOutAnimation] class="controls-container">
     <h1 class="controls-header">{{'ui.howToUse' | translate}}</h1>
     <div class="controls-item">
-        <img class="controls-item-image" src="./assets/icons/left-click-move.png"/>
+        <img class="controls-item-image" src="assets/icons/left-click-move.png"/>
         <h2 class="controls-item-text controls-text-left">{{'ui.lookAroundGuide' | translate}}</h2>
     </div>
     <div class="controls-item">
         <h2 class="controls-item-text controls-text-right">{{'ui.zoomInGuide' | translate}}</h2>
-        <img class="controls-item-image" src="./assets/icons/zoom.png"/>
+        <img class="controls-item-image" src="assets/icons/zoom.png"/>
     </div>
     <div class="controls-item">
-        <img class="controls-item-image" src="./assets/icons/left-click.png"/>
+        <img class="controls-item-image" src="assets/icons/left-click.png"/>
         <h2 class="controls-item-text controls-text-left">{{'ui.moveToRoomGuide' | translate}}</h2>
     </div>
     <button class="controls-button" mat-flat-button color="warn" (click)="closeControlDialog()">{{'ui.gotIt' | translate}}</button>
@@ -42,6 +42,6 @@
 <div class="map-container">
     <app-map [currentBuilding]="building" [currentFloor]="currentFloor" [selectedRoom]="room"></app-map>
 </div>
-<app-tolstoi-first-floor [goToRoom]="roomToNavigateTo" (tourViewer)="getViewer($event)" (roomMessage)="readRoomName($event)" *ngIf="this.building == 'tolstoi'"></app-tolstoi-first-floor>
-<app-tolstoi-second-floor [goToRoom]="roomToNavigateTo" (tourViewer)="getViewer($event)" (roomMessage)="readRoomName($event)" *ngIf="this.building == 'teine'"></app-tolstoi-second-floor>
-<app-tolstoi-third-floor [goToRoom]="roomToNavigateTo" (tourViewer)="getViewer($event)" (roomMessage)="readRoomName($event)" *ngIf="this.building == 'kolmas'"></app-tolstoi-third-floor>
+<app-tolstoi-first-floor class="ff" [goToRoom]="roomToNavigateTo" (tourViewer)="getViewer($event)" (requestFloorChange)="changeFloor($event)" (roomMessage)="readRoomName($event)" *ngIf="usingTolstoiBuilding"></app-tolstoi-first-floor>
+<app-tolstoi-second-floor [goToRoom]="roomToNavigateTo" (tourViewer)="getViewer($event)" (requestFloorChange)="changeFloor($event)" (roomMessage)="readRoomName($event)" *ngIf="usingSecondBuilding"></app-tolstoi-second-floor>
+<app-tolstoi-third-floor [goToRoom]="roomToNavigateTo" (tourViewer)="getViewer($event)" (requestFloorChange)="changeFloor($event)" (roomMessage)="readRoomName($event)" *ngIf="usingThirdBuilding"></app-tolstoi-third-floor>
