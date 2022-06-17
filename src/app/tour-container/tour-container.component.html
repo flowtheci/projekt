@@ -20,5 +20,5 @@
 <div class="map-container">
     <app-map [currentBuilding]="building" [currentFloor]="currentFloor" [selectedRoom]="room"></app-map>
 </div>
-<app-tolstoi-first-floor [goToRoom]="roomToNavigateTo" (roomMessage)="readRoomName($event)" *ngIf="this.building == 'tolstoi'"></app-tolstoi-first-floor>
+<app-tolstoi-first-floor [goToRoom]="roomToNavigateTo" (roomMessage)="readRoomName($event)" (tourViewer)="getViewer($event)" *ngIf="this.building == 'tolstoi'"></app-tolstoi-first-floor>
 <app-tolstoi-second-floor *ngIf="this.building == 'teine'"></app-tolstoi-second-floor>

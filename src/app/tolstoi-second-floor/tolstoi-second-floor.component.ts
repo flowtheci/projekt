@@ -1,9 +1,9 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 
-// @ts-ignore
-import * as PANOLENS from 'panolens';
-// @ts-ignore
-import * as THREE from 'three';
+import * as THREE from '../../lib/three.js';
+import Panolens from '../../lib/panolens';
+const TWEEN = Panolens.TWEEN;
+const PANOLENS = Panolens.PANOLENS;
 
 @Component({
   selector: 'app-tolstoi-second-floor',

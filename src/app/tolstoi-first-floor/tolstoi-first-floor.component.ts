@@ -1,9 +1,8 @@
 import { AfterViewInit, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-
-// @ts-ignore
-import * as PANOLENS from 'panolens';
-// @ts-ignore
-import * as THREE from 'three';
+import * as THREE from '../../lib/three.js';
+import Panolens from '../../lib/panolens';
+const TWEEN = Panolens.TWEEN;
+const PANOLENS = Panolens.PANOLENS;
 
 
 @Component({
@@ -13,6 +12,7 @@ import * as THREE from 'three';
 })
 export class TolstoiFirstFloorComponent implements OnInit, AfterViewInit, OnDestroy {
 
+  pano = PANOLENS;
   selectedRoom: string = '';
 
   @Input() set goToRoom(value: string) {
@@ -22,6 +22,7 @@ export class TolstoiFirstFloorComponent implements OnInit, AfterViewInit, OnDest
  
  }
   @Output() roomMessage = new EventEmitter<string>();
+  @Output() tourViewer = new EventEmitter<any>;
 
   // Load all images as constants
   entranceImage = 'assets/Tolstoi/1.korrus/tolstoi-siseou.jpg'
@@ -118,6 +119,7 @@ export class TolstoiFirstFloorComponent implements OnInit, AfterViewInit, OnDest
   }
 
   ngOnInit(): void {
+    this.tourViewer.emit(this.viewer);
   }
 
   ngAfterViewInit(): void {
