@@ -1,0 +1,26 @@
+{
+    "common": {
+        "enter": "Enter",
+        "back": "Back",
+        "exitVirtualTour": "Exit tour",
+        "currentLanguage": "English"
+    },
+    "menu": {
+        "enrollment": "Enrollment",
+        "studies": "Studies",
+        "virtualTour": "Virtual tour"
+    },
+    "ui": {
+        "chooseBuilding": "Choose building:",
+        "tolstoi": "Tolstoi",
+        "secondBuilding": "Building 2",
+        "thirdBuilding": "Building 3",
+        "mainBuildingSubtitle": "Pallase University main building",
+        "secondaryBuildingSubtitle": "Pallase University side building",
+        "howToUse": "How to use?",
+        "lookAroundGuide": "Click the left mouse button and drag your mouse to look around.",
+        "zoomInGuide": "Use the scroll wheel to zoom in and out.",
+        "moveToRoomGuide": "Move to different rooms & interact with the virtual tour using the left mouse button.",
+        "gotIt": "Got it!"
+    }
+}
