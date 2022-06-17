@@ -46,7 +46,8 @@ export class TolstoiThirdFloorComponent implements OnInit, AfterViewInit, OnDest
   viewer = new PANOLENS.Viewer({
     output: 'console',
     momentum: false,
-  });
+    controlButtons: ['setting'],
+});
 
   public disposePanoramaContainer() {
     this.viewer.destroy();
