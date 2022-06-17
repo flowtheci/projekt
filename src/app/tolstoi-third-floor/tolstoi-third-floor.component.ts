@@ -143,73 +143,73 @@ var lookAtPositions3 = [
   this.stairsPano.addEventListener('enter-fade-start', () => {
       console.log('stairsPano entered')
       this.setRoom('stairsPano');
-      this.viewer.tweenControlCenter( lookAtPositions3[0] );
+      this.viewer.tweenControlCenter( lookAtPositions3[0], 0 );
   })
 
   this.hallwayPano.addEventListener('enter-fade-start', () => {
       console.log('hallwayPano entered')
       this.setRoom('hallwayPano');
-      this.viewer.tweenControlCenter( lookAtPositions3[1]);
+      this.viewer.tweenControlCenter( lookAtPositions3[1], 0);
   })
   this.workroomPano.addEventListener('enter-fade-start', () => {
       console.log('workroomPano entered')
       this.setRoom('workroomPano');
-      this.viewer.tweenControlCenter( lookAtPositions3[2] );
+      this.viewer.tweenControlCenter( lookAtPositions3[2], 0 );
   })
   this.workroom2Pano.addEventListener('enter-fade-start', () => {
       console.log('workroom2Pano entered')
       this.setRoom('workroom2Pano');
-      this.viewer.tweenControlCenter( lookAtPositions3[3], 6000 );
+      this.viewer.tweenControlCenter( lookAtPositions3[3], 0 );
   })
   this.workroom3Pano.addEventListener('enter-fade-start', () => {
       console.log('workroom3Pano entered')
       this.setRoom('workroom3Pano');
-      this.viewer.tweenControlCenter( lookAtPositions3[4], 6000 );
+      this.viewer.tweenControlCenter( lookAtPositions3[4], 0 );
   })
   this.workroom4Pano.addEventListener('enter-fade-start', () => {
       console.log('workroom4Pano entered')
       this.setRoom('workroom4Pano');
-      this.viewer.tweenControlCenter( lookAtPositions3[5], 6000 );
+      this.viewer.tweenControlCenter( lookAtPositions3[5], 0 );
   })
   this.hallway2Pano.addEventListener('enter-fade-start', () => {
       console.log('hallway2Pano entered')
       this.setRoom('hallway2Pano');
-      this.viewer.tweenControlCenter( lookAtPositions3[6], 6000 );
+      this.viewer.tweenControlCenter( lookAtPositions3[6], 0 );
   })
   this.hallway3Pano.addEventListener('enter-fade-start', () => {
       console.log('hallway3Pano entered')
       this.setRoom('hallway3Pano');
-      this.viewer.tweenControlCenter( lookAtPositions3[7], 6000 );
+      this.viewer.tweenControlCenter( lookAtPositions3[7], 0 );
   })
   this.hallway4Pano.addEventListener('enter-fade-start', () => {
       console.log('hallway4Pano entered')
       this.setRoom('hallway4Pano');
-      this.viewer.tweenControlCenter( lookAtPositions3[8]);
+      this.viewer.tweenControlCenter( lookAtPositions3[8], 0);
   })
   this.roomPano.addEventListener('enter-fade-start', () => {
       console.log('roomPano entered')
       this.setRoom('roomPano');
-      this.viewer.tweenControlCenter( lookAtPositions3[9], 6000 );
+      this.viewer.tweenControlCenter( lookAtPositions3[9], 0 );
   })
   this.hallway5Pano.addEventListener('enter-fade-start', () => {
       console.log('hallway5Pano entered')
       this.setRoom('hallway5Pano');
-      this.viewer.tweenControlCenter( lookAtPositions3[10], 6000 );
+      this.viewer.tweenControlCenter( lookAtPositions3[10], 0 );
   })
   this.workroom5Pano.addEventListener('enter-fade-start', () => {
       console.log('workroom5Pano entered')
       this.setRoom('workroom5Pano');
-      this.viewer.tweenControlCenter( lookAtPositions3[11], 6000 );
+      this.viewer.tweenControlCenter( lookAtPositions3[11], 0 );
   })
   this.workroom6Pano.addEventListener('enter-fade-start', () => {
       console.log('workroom6Pano entered')
       this.setRoom('workroom6Pano');
-      this.viewer.tweenControlCenter( lookAtPositions3[12], 6000 );
+      this.viewer.tweenControlCenter( lookAtPositions3[12], 0 );
   })
   this.hallway6Pano.addEventListener('enter-fade-start', () => {
       console.log('hallway6Pano entered')
       this.setRoom('hallway6Pano');
-      this.viewer.tweenControlCenter( lookAtPositions3[13], 6000 );
+      this.viewer.tweenControlCenter( lookAtPositions3[13], 0 );
   })
   
   
