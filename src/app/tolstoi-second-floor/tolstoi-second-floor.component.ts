@@ -15,23 +15,36 @@ export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit, OnDes
 
   constructor() { }
 
+  setRoom(room: string) {
+    this.selectedRoom = room;
+    this.roomMessage.emit(this.selectedRoom)
+  }
+
   selectedRoom: string = '';
+  ready = false;
+
+  viewer = new PANOLENS.Viewer({
+    output: 'console',
+    momentum: false,
+  });
 
   @Input() set goToRoom(value: string) {
-    if (value == null || value == '') return;
+    if (value == null || value == '' || !this.ready) return;
     console.log("Navigation event received, attempting navigation...");
     this.navigateToRoom(value);
   }
 
   navigateToRoom(room: string) {
-  const roomPano = eval("this." + room);
-  this.viewer.setPanorama(roomPano);
+    const roomPano = eval("this." + room);
+    this.viewer.dispose();
+    this.viewer.add(roomPano);
   }
 
   @Output() roomMessage = new EventEmitter<string>();
 
   ngOnInit(): void {
     this.loadFloorData();
+    this.ready = true;
   }
 
   ngAfterViewInit(): void {
@@ -42,10 +55,7 @@ export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit, OnDes
     this.disposePanoramaContainer();
   }
 
-  viewer = new PANOLENS.Viewer({
-    output: 'console',
-    momentum: false,
-  });
+  
 
   public disposePanoramaContainer() {
     this.viewer.destroy();
@@ -112,69 +122,91 @@ export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit, OnDes
     // Add console log event listeners for every panorama object
     secondStartPano.addEventListener('enter-fade-start', () => {
       console.log('secondStartPano entered')
+      this.setRoom('secondStartPano');
     })
     secondHallPano.addEventListener('enter-fade-start', () => {
       console.log('secondHallImage1 entered')
+      this.setRoom('secondHallImage1');
     })
     secondHallPano2.addEventListener('enter-fade-start', () => {
       console.log('secondHallImage2 entered')
+      this.setRoom('secondHallImage2');
     })
     paintingHallPano1.addEventListener('enter-fade-start', () => {
       console.log('paintingHall1 entered')
+      this.setRoom('paintingHall1');
     })
     paintingHallPano2.addEventListener('enter-fade-start', () => {
       console.log('paintingHall2 entered')
+      this.setRoom('paintingHall2');
     })
     roomPano1.addEventListener('enter-fade-start', () => {
       console.log('room1 entered')
+      this.setRoom('room1');
     })
     roomPano2.addEventListener('enter-fade-start', () => {
       console.log('room2 entered')
+      this.setRoom('room2');
     })
     corridorPano1.addEventListener('enter-fade-start', () => {
       console.log('corrdior1 entered')
+      this.setRoom('corrdior1');
     })
     corridorPano2.addEventListener('enter-fade-start', () => {
       console.log('corrdior2 entered')
+      this.setRoom('corrdior2');
     })
     corridorPano3.addEventListener('enter-fade-start', () => {
       console.log('corrdior3 entered')
+      this.setRoom('corrdior3');
     })
     paintingLeadPano.addEventListener('enter-fade-start', () => {
       console.log('paintingLead entered')
+      this.setRoom('paintingLead');
     })
     paintingRoomPano.addEventListener('enter-fade-start', () => {
       console.log('paintingRoom entered')
+      this.setRoom('paintingRoom');
     })
     restoRoomPano.addEventListener('enter-fade-start', () => {
       console.log('restoRoom entered')
+      this.setRoom('restoRoom');
     })
     restoRoomPano2.addEventListener('enter-fade-start', () => {
       console.log('restoRoom2 entered')
+      this.setRoom('restoRoom2');
     })
     terrassPano1.addEventListener('enter-fade-start', () => {
       console.log('terrass1 entered')
+      this.setRoom('terrass1');
     })
     terrassPano2.addEventListener('enter-fade-start', () => {
       console.log('terrass2 entered')
+      this.setRoom('terrass2');
     })
     drawingClassPano1.addEventListener('enter-fade-start', () => {
       console.log('drawingClass1 entered')
+      this.setRoom('drawingClass1');
     })
     drawingClassPano2.addEventListener('enter-fade-start', () => {
       console.log('drawingClass2 entered')
+      this.setRoom('drawingClass2');
     })
     drawingClassPano3.addEventListener('enter-fade-start', () => {
       console.log('drawingClass3 entered')
+      this.setRoom('drawingClass3');
     })
     drawingClassPano4.addEventListener('enter-fade-start', () => {
       console.log('drawingClass4 entered')
+      this.setRoom('drawingClass4');
     })
     stairsPano1.addEventListener('enter-fade-start', () => {
       console.log('stairs1 entered')
+      this.setRoom('stairs1');
     })
     stairsPano2.addEventListener('enter-fade-start', () => {
       console.log('stairs2 entered')
+      this.setRoom('stairs2');
     })
 
     this.viewer.add(secondStartPano);
