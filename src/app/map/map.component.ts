@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import {AfterContentInit, AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import * as $ from 'jquery';
@@ -7,6 +8,42 @@ import { RoomNavigationService } from '../room-navigation.service';
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
+  animations: [
+    trigger(
+      'inOutAnimation', 
+      [
+        transition(
+          ':enter', 
+          [
+            style({ opacity: 0 }),
+            animate('0.5s ease-in',
+                    style({ opacity: 1 }))
+          ]
+        ),
+        transition(
+          ':leave', 
+          [
+            style({ opacity: 1 }),
+            animate('0.5s ease-out',
+                    style({ opacity: 0 }))
+          ]
+        )
+      ]
+    ),
+    trigger(
+      'showMapIcon', 
+      [
+        transition(
+          ':enter', 
+          [
+            style({ opacity: 0 }),
+            animate('0.5s 0.5s ease-in',
+                    style({ opacity: 1 }))
+          ]
+        ),
+      ]
+    ),
+  ]
 })
 export class MapComponent implements OnInit {
 
@@ -18,6 +55,7 @@ export class MapComponent implements OnInit {
   }
 
   addedPoints = 0;
+  isMapPanelOpen = false;
   tolstoiFirstFloorMapUrl: string = './assets/Tolstoi/1.korrus/1korruskaart.jpg';
   tolstoiSecondFloorMapUrl: string = './assets/Tolstoi/2korrus/2korruskaart.jpg';
   tolstoiThirdFloorMapUrl: string = './assets/Tolstoi/3.korrus/3korrusekaartt.jpg';
@@ -72,6 +110,11 @@ export class MapComponent implements OnInit {
     return this.currentFloorMapUrl;
   }
 
+  toggleMapPanel() {
+    this.isMapPanelOpen = !this.isMapPanelOpen;
+
+  }
+
   public createTolstoiFirstFloorPoints() {
     this.placeCoordinate(470, 452, "entrancePano");
     this.placeCoordinate(470, 400, "lobbyPano1");
@@ -120,27 +163,27 @@ export class MapComponent implements OnInit {
 
   public createTolstoiSecondFloorPoints() {
     this.placeCoordinate(399, 268, "secondStartPano");
-    this.placeCoordinate(381, 200, "secondHallImage1");
-    this.placeCoordinate(393, 153, "secondHallImage2");
-    this.placeCoordinate(393, 104, "paintingHall1");
-    this.placeCoordinate(501, 107, "paintingHall2");
-    this.placeCoordinate(571, 114, "room1");
-    this.placeCoordinate(581, 148, "room2");
-    this.placeCoordinate(477, 152, "corridor1");
-    this.placeCoordinate(314, 207, "corridor2");
-    this.placeCoordinate(317, 167, "corridor3");
-    this.placeCoordinate(457, 204, "paintingLead");
-    this.placeCoordinate(309, 288, "paintingRoom");
-    this.placeCoordinate(299, 114, "restoRoom");
-    this.placeCoordinate(222, 108, "restoRoom2"); 
-    this.placeCoordinate(472, 269, "terrass1");
-    this.placeCoordinate(477, 389, "terrass2");
-    this.placeCoordinate(642, 104, "drawingClass1");
-    this.placeCoordinate(750, 108, "drawingClass2");
-    this.placeCoordinate(905, 111, "drawingClass3");
-    this.placeCoordinate(703, 184, "drawingClass4");
-    this.placeCoordinate(592,196, "stairs1");
-    this.placeCoordinate(422, 292, "stairs2");
+    this.placeCoordinate(381, 200, "secondHallPano");
+    this.placeCoordinate(393, 153, "secondHallPano2");
+    this.placeCoordinate(393, 104, "paintingHallPano1");
+    this.placeCoordinate(501, 107, "paintingHallPano2");
+    this.placeCoordinate(571, 114, "roomPano1");
+    this.placeCoordinate(581, 148, "roomPano2");
+    this.placeCoordinate(477, 152, "corridorPano1");
+    this.placeCoordinate(314, 207, "corridorPano2");
+    this.placeCoordinate(317, 167, "corridorPano3");
+    this.placeCoordinate(457, 204, "paintingLeadPano");
+    this.placeCoordinate(309, 288, "paintingRoomPano");
+    this.placeCoordinate(299, 114, "restoRoomPano");
+    this.placeCoordinate(222, 108, "restoRoomPano2"); 
+    this.placeCoordinate(472, 269, "terrassPano1");
+    this.placeCoordinate(477, 389, "terrassPano2");
+    this.placeCoordinate(642, 104, "drawingClassPano1");
+    this.placeCoordinate(750, 108, "drawingClassPano2");
+    this.placeCoordinate(905, 111, "drawingClassPano3");
+    this.placeCoordinate(703, 184, "drawingClassPano4");
+    this.placeCoordinate(592,196, "stairsPano1");
+    this.placeCoordinate(422, 292, "stairsPano2");
   }
 
   public createTolstoiThirdFloorPoints() {

@@ -9,6 +9,176 @@ $red: #DB1C23;
     right: 2vw;
 }
 
+.credit{
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    padding: 20px 0;
+    color: #fff;
+  }
+
+  .infospot {
+    max-width: 500px;
+    max-height: 500px;
+    min-width: 200px;
+    min-height: 250px;
+    background: #fff;
+    opacity: 0.75;
+    color: #000;
+    border-radius: 3px;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .infospot > iframe {
+    border: none;
+    width:100%;
+  }
+
+  .title {
+    font-size: 1.5em;
+    text-align: center;
+    padding: 5px;
+  }
+
+  .text {
+    padding: 0 20px 20px 20px;
+  }
+  #zoom-in {
+    top: 85px;
+    right: 70px;
+    
+  }
+  #zoom-out {
+    
+    top: 85px;
+    right: 120px;
+    position: absolute;
+   
+  }
+  #left {
+    
+    bottom: 125px;
+    left: 25px;
+  }
+  #right {
+    
+    bottom: 125px;
+    left: 105px;
+  }
+  #up {
+    
+    bottom: 165px;
+    left: 65px;
+    position: absolute;
+  }
+  #down {
+   
+    bottom: 85px;
+    left: 65px;
+    position: absolute;
+    
+  }
+  #fullscreen {
+    bottom: 44px;
+    left: 222px;
+    position: absolute;
+
+  }
+  .panoNavButton {
+    width: 36px;
+    height: 36px;
+    z-index: 0;
+    position: absolute;
+  }
+  #fullscreen-button {
+    position: absolute;
+    top: 15px;
+    right:  10px;
+    background: rgba(0,0,0,0.0);
+    border:  0;
+    width:  40px;
+    height:  40px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    transition:  transform .3s;
+    font-size: 0;
+    opacity: 1;
+    pointer-events: auto;
+    cursor:  pointer;
+  }
+  #fullscreen-button:hover {
+    transform: scale(1.125);
+  }
+  #fullscreen-button span {
+    width:  15px;
+    height:  15px;
+    border-top:  3.5px solid rgb(252, 251, 251); 
+    border-left:  3.5px solid rgb(252, 249, 249); 
+    position: absolute;
+    outline: 1px solid transparent;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    will-change: transform;
+    -webkit-perspective: 1000;
+    transition:  .3s;
+    transition-delay: .75s;
+  }
+  #fullscreen-button span:nth-child(1) {
+    top: 7px;
+    left: 10px;
+    width:  9px;
+    height:  9px;
+  }
+  #fullscreen-button span:nth-child(2) {
+    top: 7px;
+    left: 30px;
+    transform: rotate(90deg);
+    width:  9px;
+    height:  9px;
+  }
+  #fullscreen-button span:nth-child(3) {
+    top: 28px;
+    left: 11px;
+    width:  9px;
+    height:  9px;
+    transform: rotate(-90deg);
+    
+  }
+  #fullscreen-button span:nth-child(4) {
+    top: 28px;
+    left: 30px;
+    width:  9px;
+    height:  9px;
+    transform: rotate(-180deg);
+  }
+  
+  
+  [fullscreen] #fullscreen-button span:nth-child(1) {
+    top: 24px;
+    left: 24px;
+    width:  9px;
+    height:  9px;
+  }
+  [fullscreen] #fullscreen-button span:nth-child(2) {
+    top: 24px;
+    left: 13px;
+    width:  9px;
+    height:  9px;
+  }
+  [fullscreen] #fullscreen-button span:nth-child(3) {
+    top: 13px;
+    left: 24px;
+    width:  9px;
+    height:  9px;
+  }
+  [fullscreen] #fullscreen-button span:nth-child(4) {
+    top: 13px;
+    left: 13px;
+    width:  9px;
+    height:  9px;
+  }
+
 .exit-button {
     font-size: 20px;
     font-family: 'Kanit', sans-serif;
