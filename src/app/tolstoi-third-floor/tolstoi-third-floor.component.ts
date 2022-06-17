@@ -27,10 +27,12 @@ export class TolstoiThirdFloorComponent implements OnInit, AfterViewInit, OnDest
     this.viewer.setPanorama(roomPano);
   }
 
+  @Output() tourViewer = new EventEmitter<any>;
   @Output() roomMessage = new EventEmitter<string>();
 
   ngOnInit(): void {
     this.loadFloorData();
+    this.tourViewer.emit(this.viewer);
   }
 
   ngAfterViewInit(): void {
