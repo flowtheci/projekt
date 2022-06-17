@@ -56,7 +56,7 @@ export class TourContainerComponent implements OnInit {
       }
       console.log('Entered building ' + this.building);
     });
-
+    if (this.viewer == null) console.warn("no viewer found on init");
   }
 
 
@@ -66,44 +66,31 @@ export class TourContainerComponent implements OnInit {
 
   public readRoomName(event: any) {
     this.room = event;
-    console.log("YEEEP!: " + this.room);
   }
 
   getViewer(event: any) {
     this.viewer = event;
+    console.warn("found viewer!")
+    console.warn(event);
   }
 
-
-  zoomSetup() {
-    document.querySelector( '#zoom-in' )?.addEventListener( 'click', () =>{
-      var currentZoom = this.viewer.camera.fov;
-        var newZoom = currentZoom - 10;
-        if(newZoom < 30) newZoom = 30;
-        this.viewer.setCameraFov(newZoom);
-      });
-    document.querySelector( '#zoom-out' )?.addEventListener( 'click', () =>{
-      var currentZoom = this.viewer.camera.fov;
-      var newZoom = currentZoom + 10;
-      if(newZoom > 110) newZoom = 110;
-      this.viewer.setCameraFov(newZoom);
-      });
-    document.querySelector( '#left' )?.addEventListener( 'click', () =>{
-      this.rotateLeftRight(1);
-      });
-    document.querySelector( '#right' )?.addEventListener( 'click', () =>{
-      this.rotateLeftRight(0);
-      });
-    document.querySelector( '#up' )?.addEventListener( 'click', () =>{
-      this.rotateUpDown(1);
-      });
-    document.querySelector( '#down' )?.addEventListener( 'click', () =>{
-      this.rotateUpDown(0);
-      });	
+  zoomIn() {
+    var currentZoom = this.viewer.camera.fov;
+    var newZoom = currentZoom - 10;
+    if(newZoom < 30) newZoom = 30;
+    this.viewer.setCameraFov(newZoom);
   }
 
-  
+  zoomOut() {
+    var currentZoom = this.viewer.camera.fov;
+    var newZoom = currentZoom + 10;
+    if(newZoom > 110) newZoom = 110;
+    this.viewer.setCameraFov(newZoom);
+  }
+
   ROTATION_POSITION = 0.05;
   ROTATION_SPEED = 50;
+
   rotateLeftRight(param: number /* 0 - right, 1 - left */) {
       let go = this.ROTATION_POSITION;
       let back = - this.ROTATION_POSITION;

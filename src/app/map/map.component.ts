@@ -1,3 +1,4 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import {AfterContentInit, AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import * as $ from 'jquery';
@@ -7,6 +8,42 @@ import { RoomNavigationService } from '../room-navigation.service';
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss'],
+  animations: [
+    trigger(
+      'inOutAnimation', 
+      [
+        transition(
+          ':enter', 
+          [
+            style({ opacity: 0 }),
+            animate('0.5s ease-in',
+                    style({ opacity: 1 }))
+          ]
+        ),
+        transition(
+          ':leave', 
+          [
+            style({ opacity: 1 }),
+            animate('0.5s ease-out',
+                    style({ opacity: 0 }))
+          ]
+        )
+      ]
+    ),
+    trigger(
+      'showMapIcon', 
+      [
+        transition(
+          ':enter', 
+          [
+            style({ opacity: 0 }),
+            animate('0.5s 0.5s ease-in',
+                    style({ opacity: 1 }))
+          ]
+        ),
+      ]
+    ),
+  ]
 })
 export class MapComponent implements OnInit {
 
@@ -18,6 +55,7 @@ export class MapComponent implements OnInit {
   }
 
   addedPoints = 0;
+  isMapPanelOpen = false;
   tolstoiFirstFloorMapUrl: string = './assets/Tolstoi/1.korrus/1korruskaart.jpg';
   tolstoiSecondFloorMapUrl: string = './assets/Tolstoi/2korrus/2korruskaart.jpg';
 
@@ -63,6 +101,11 @@ export class MapComponent implements OnInit {
 
   get currentFloorMap(): string {
     return this.currentFloorMapUrl;
+  }
+
+  toggleMapPanel() {
+    this.isMapPanelOpen = !this.isMapPanelOpen;
+
   }
 
   public createTolstoiFirstFloorPoints() {

@@ -1,4 +1,7 @@
-<div id="map-container" class="map-container">
+<div [style.display]="isMapPanelOpen ? 'block' : 'none'" [@inOutAnimation] id="map-container" class="map-container">
   <img class="map-image" id="map-image" [src]="currentFloorMap" alt="Map of the current floor.">
-  <mat-icon class="close-icon">close</mat-icon>
+  <mat-icon (click)="toggleMapPanel()" class="close-icon">close</mat-icon>
+</div>
+<div class="map-button-container" [@showMapIcon] *ngIf="!isMapPanelOpen">
+  <mat-icon (click)="toggleMapPanel()" class="map-icon">map</mat-icon>
 </div>
