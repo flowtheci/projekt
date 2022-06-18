@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { TolstoiFirstFloorComponent } from '../tolstoi-first-floor/tolstoi-first-floor.component';
 import { RoomNavigationService } from '../room-navigation.service';
 import * as THREE from '../../lib/three.js';
 import Panolens from '../../lib/panolens';
+import {Location} from "@angular/common";
 const TWEEN = Panolens.TWEEN;
 const PANOLENS = Panolens.PANOLENS;
 
@@ -16,13 +17,13 @@ const PANOLENS = Panolens.PANOLENS;
   styleUrls: ['./tour-container.component.scss'],
   animations: [
     trigger(
-      'inOutAnimation', 
+      'inOutAnimation',
       [
         transition(
-          ':leave', 
+          ':leave',
           [
             style({ opacity: 1 }),
-            animate('0.75s ease-out', 
+            animate('0.75s ease-out',
                     style({ opacity: 0 }))
           ]
         )
@@ -34,40 +35,28 @@ const PANOLENS = Panolens.PANOLENS;
 export class TourContainerComponent implements OnInit {
   building: string = '';
   room: string = '';
-  showControls = true;
+  showControls = false;
   roomToNavigateTo: string = '';
   currentFloor = 1;
   viewer: any;
-  usingTolstoiBuilding = false;
-  usingSecondBuilding = false;
-  usingThirdBuilding = false;
 
-  constructor(private route: ActivatedRoute, private roomService: RoomNavigationService) { 
+  constructor(
+    private route: ActivatedRoute,
+    private roomService: RoomNavigationService,
+    private router: Router,
+    private location: Location
+  ) {
     this.roomService.currentMessage.subscribe(message =>  {
       console.log("Update received by tour container, attempting to navigate to " + message);
       this.roomToNavigateTo = message;
     });
-  }   
+  }
 
-  
+
 
   ngOnInit(): void {
     this.route.data.subscribe(data => {
-      this.building = data['building'];
-      switch (this.building) {
-        case 'tolstoi':
-          this.usingTolstoiBuilding = true;
-          this.currentFloor = 1;
-          break;
-        case 'teine':
-          this.usingSecondBuilding = true;
-          this.currentFloor = 2;
-          break;
-        case 'kolmas':
-          this.usingThirdBuilding = true;
-          this.currentFloor = 3;
-          break;
-      }
+      this.currentFloor = data['floor'] as number;
       console.log('Entered building ' + this.building);
     });
     if (this.viewer == null) console.warn("no viewer found on init");
@@ -84,32 +73,48 @@ export class TourContainerComponent implements OnInit {
 
   getViewer(event: any) {
     this.viewer = event;
-    console.warn("found viewer!")
+    this.route.queryParams.subscribe(params => {
+      console.error('Received params');
+      console.error(params);
+      this.showControls = params['hideControls'] == true;
+      this.roomService.changeRoom(params['startingRoom']);
+      if (params['floor']) {
+        this.location.replaceState(
+          this.router.createUrlTree(
+            [params['floor']],
+          ).toString()
+        )
+      }
+    });
+    console.warn("found viewer!");
     console.warn(event);
-  }
-
-  resetContainer(floor: number) {
-    this.usingTolstoiBuilding = false;
-    this.usingSecondBuilding = false;
-    this.usingThirdBuilding = false;
-    this.currentFloor = floor;
-    switch (floor) {
-      case 1:
-        this.usingTolstoiBuilding = true;
-        break;
-      case 2:
-        this.usingSecondBuilding = true;
-        break;
-      case 3:
-        this.usingThirdBuilding = true;
-        break;
-    }
   }
 
   changeFloor(event: any) {
     const newFloor = event as number;
     console.log("Changing to floor " + newFloor)
-    this.resetContainer(newFloor);
+    let floorNav = '';
+    let startingRoom = '';
+    switch (newFloor) {
+      case 1:
+        floorNav = '/tolstoi';
+        startingRoom = 'lobbyPano3';
+        break;
+      case 2:
+        floorNav = '/tolstoi2';
+        if (this.currentFloor == 3) {
+          startingRoom = 'stairsPano2';
+        }
+        break;
+      case 3:
+        floorNav = '/tolstoi3';
+        break;
+    }
+    this.router.navigate([floorNav], { queryParams: {
+        startingRoom: startingRoom,
+        hideControls: true,
+        floor: floorNav.substring(1),
+      }});
   }
 
   zoomIn() {
@@ -134,10 +139,10 @@ export class TourContainerComponent implements OnInit {
       let back = - this.ROTATION_POSITION;
       let pos  = param < 1 ? go : back;
       let easing = {val : pos};
-      let tween = new TWEEN.Tween(easing) 
-          .to({val: 0}, this.ROTATION_SPEED) 
-          .easing(TWEEN.Easing.Quadratic.InOut) 
-          .onUpdate(() => { 
+      let tween = new TWEEN.Tween(easing)
+          .to({val: 0}, this.ROTATION_SPEED)
+          .easing(TWEEN.Easing.Quadratic.InOut)
+          .onUpdate(() => {
               this.viewer.OrbitControls.rotateLeft(easing.val)
       }).start();
   }
@@ -147,12 +152,12 @@ export class TourContainerComponent implements OnInit {
       let back = -this.ROTATION_POSITION;
       let pos  = param < 1 ? go : back;
       let easing = {val : pos};
-      let tween = new TWEEN.Tween(easing) 
-          .to({val: 0}, this.ROTATION_SPEED) 
-          .easing(TWEEN.Easing.Quadratic.InOut) 
-          .onUpdate(() => { 
+      let tween = new TWEEN.Tween(easing)
+          .to({val: 0}, this.ROTATION_SPEED)
+          .easing(TWEEN.Easing.Quadratic.InOut)
+          .onUpdate(() => {
               this.viewer.OrbitControls.rotateUp(easing.val)
       }).start();
   }
-  
+
 }

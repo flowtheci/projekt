@@ -30,7 +30,7 @@ export class TolstoiThirdFloorComponent implements OnInit, AfterViewInit, OnDest
 
   changeFloor(floor: number) {
     this.requestFloorChange.emit(floor);
- 
+
  }
   stairsImage = 'assets/Tolstoi/3.korrus/3_3_300 trepp alla-Edit.jpg'
   hallwayImage = 'assets/Tolstoi/3.korrus/3_3_300-Edit.jpg'
@@ -46,9 +46,9 @@ export class TolstoiThirdFloorComponent implements OnInit, AfterViewInit, OnDest
   workroom5Image = 'assets/Tolstoi/3.korrus/3_3_319 1.1-Edit.jpg'
   workroom6Image = 'assets/Tolstoi/3.korrus/3_3_319 1.2-Edit.jpg'
   hallway6Image = 'assets/Tolstoi/3.korrus/3_3_koridor 1.4-Edit.jpg'
- 
- 
- 
+
+
+
   stairsPano = new PANOLENS.ImagePanorama(this.stairsImage)
   hallwayPano = new PANOLENS.ImagePanorama(this.hallwayImage)
   workroomPano = new PANOLENS.ImagePanorama(this.workroomImage)
@@ -143,9 +143,9 @@ var lookAtPositions3 = [
     new THREE.Vector3(-4964.37, -478.20, 191.71 ),//12 319 workroom ......
     new THREE.Vector3(-3828.21, -1919.36, -2570.00 ),//13 koridor tuppa 302 ....
    ];
-  
-  
-  
+
+
+
   //add console
   this.stairsPano.addEventListener('enter-fade-start', () => {
       console.log('stairsPano entered')
@@ -218,12 +218,12 @@ var lookAtPositions3 = [
       this.setRoom('hallway6Pano');
       this.viewer.tweenControlCenter( lookAtPositions3[13], 0 );
   })
-  
-  
+
+
 
 
 // link panoramas with points
-// trepist üles minek 
+// trepist üles minek
 this.stairsPano.link(this.hallwayPano, new THREE.Vector3(-4786.19, -1212.11, 736.90));
 
 // läbi ukse minek koridori
@@ -232,7 +232,7 @@ this.hallwayPano.link(this.hallway4Pano, new THREE.Vector3(4507.22, -1918.81, -9
 
 // esimene kolmest koridori osast
 this.hallway4Pano.link(this.hallwayPano, new THREE.Vector3(4094.17, -211.60, -2848.10));
-this.hallway4Pano.link(this.hallway6Pano, new THREE.Vector3(-2965.87, -1046.58, -3876.58)); 
+this.hallway4Pano.link(this.hallway6Pano, new THREE.Vector3(-2965.87, -1046.58, -3876.58));
 this.hallway4Pano.link(this.hallway3Pano, new THREE.Vector3(2317.11, -2385.64, 3722.85));
 this.hallway4Pano.link(this.workroom3Pano, new THREE.Vector3(4704.67, -307.57, -1643.26));
 
@@ -280,7 +280,7 @@ this.workroom5Pano.link(this.workroom6Pano, new THREE.Vector3(-1161.17, -339.51,
 this.workroom6Pano.link(this.workroom5Pano, new THREE.Vector3(4478.47, -421.70, 2167.31));
 
   // Floor change button
-    const goDownFloor = new PANOLENS.Infospot();
+    const goDownFloor = new PANOLENS.Infospot(300, '/assets/icons/elevator.png');
     goDownFloor.position.set(1039.68, -3050.99, 3812.13);
     goDownFloor.addEventListener('click', () => {
       this.changeFloor(2);

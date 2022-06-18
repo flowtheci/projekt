@@ -87,7 +87,7 @@ export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit, OnDes
     const roomPano = eval("this." + room);
     this.viewer.setPanorama(roomPano);
   }
-  
+
   @Output() tourViewer = new EventEmitter<any>;
   @Output() roomMessage = new EventEmitter<string>();
   @Output() requestFloorChange = new EventEmitter<number>();
@@ -109,7 +109,7 @@ export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit, OnDes
     this.disposePanoramaContainer();
   }
 
-  
+
 
   public disposePanoramaContainer() {
     this.viewer.destroy();
@@ -120,7 +120,7 @@ export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit, OnDes
   }
 
   public loadFloorData() {
-    
+
 
     var lookAtPositions = [
       new THREE.Vector3(4935.02, -597.10, 483.28 ),//0, secondStartPano
@@ -145,7 +145,7 @@ export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit, OnDes
       new THREE.Vector3(-4130.18, -560.21, 2743.19),//19 drawingClass4
       new THREE.Vector3(-591.64, -182.52, -4954.43 ),//20 stairs1
       new THREE.Vector3(-99.46, -815.44, 4926.61 ),//21 stairs2
-    
+
       ];
 
 
@@ -347,11 +347,11 @@ export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit, OnDes
     this.secondStartPano.add(goDownFloor);
 
     const goUpFloor = new PANOLENS.Infospot();
-    goUpFloor.position.set(-4658.78, 1540.12, 950.85);
+    goUpFloor.position.set(-2801.26, 709.25, 4071.47);
     goUpFloor.addEventListener('click', () => {
       this.changeFloor(3);
     });
-    this.secondStartPano.add(goUpFloor);
+    this.stairsPano2.add(goUpFloor);
 
 
     window.dispatchEvent(new Event('resize'));

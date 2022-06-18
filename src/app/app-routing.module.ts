@@ -5,10 +5,9 @@ import { UiComponent } from './ui/ui.component';
 import {MapComponent} from "./map/map.component";
 
 const routes: Routes = [
-  {path: 'tolstoi', component: TourContainerComponent, data: {building: 'tolstoi'}},
-  {path: 'building2', component: TourContainerComponent, data: {building: 'teine'}},
-  {path: 'building3', component: TourContainerComponent, data: {building: 'kolmas'}},
-  {path: 'mapTest', component: MapComponent, data: {currentBuilding: 'tolstoi', currentFloor: 1}},
+  {path: 'tolstoi', component: TourContainerComponent, data: {floor: 1}},
+  {path: 'tolstoi2', component: TourContainerComponent, data: {floor: 2}},
+  {path: 'tolstoi3', component: TourContainerComponent, data: {floor: 3}},
   {path: '', component: UiComponent},
 ];
 

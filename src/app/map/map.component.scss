@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
 .hover-test:hover {
   opacity: 1;
 }
@@ -19,6 +20,13 @@
   cursor: pointer;
 }
 
+.floor-close-icon {
+  position: absolute;
+  top: 65px;
+  right: 5px;
+  cursor: pointer;
+}
+
 .map-icon {
   color: #DB1C23;
   font-size: 42px;
@@ -26,13 +34,51 @@
   width: auto;
 }
 
-.map-button-container {
+.floor-icon {
+  color: #DB1C23;
+  font-size: 42px;
+  height: auto;
+  width: auto;
+}
+
+.button-container {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: white;
   border-radius: 4px;
-  padding: 2px
+  padding: 2px;
+  max-width: 42px;
+}
+
+.floor {
+  margin-top: 15px;
+}
+
+.floor-container {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 4px;
+  padding: 8px;
+  max-width: 256px;
+}
+
+.floor-text {
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-family: 'Kanit', sans-serif;
+  font-weight: 500;
+  text-align: center;
+}
+
+.floor-button {
+  color: black;
+  text-decoration-color: white;
+  font-size: 28px;
+  height: 40px;
+  width: 40px;
 }
 
 .map-button-container:hover {
