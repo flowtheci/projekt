@@ -72,6 +72,7 @@ export class MapComponent implements OnInit {
   tolstoiFirstFloorMapUrl: string = './assets/Tolstoi/1.korrus/1korruskaart.jpg';
   tolstoiSecondFloorMapUrl: string = './assets/Tolstoi/2korrus/2korruskaart.jpg';
   tolstoiThirdFloorMapUrl: string = './assets/Tolstoi/3.korrus/3korrusekaartt.jpg';
+  tolstoiBasementMapUrl: string = './assets/Tolstoi/kelder/kelderMap.jpg';
   resetMap = false;
 
   constructor(private route: ActivatedRoute, private roomService: RoomNavigationService) {
@@ -102,6 +103,10 @@ export class MapComponent implements OnInit {
           case 3:
             this.currentFloorMapUrl = this.tolstoiThirdFloorMapUrl;
             this.createTolstoiThirdFloorPoints();
+            break;
+          case 4:
+            this.currentFloorMapUrl = this.tolstoiBasementMapUrl;
+            this.createTolstoiBasementPoints();
             break;
         }
     $('.dot').on('click', (evt) => {
@@ -216,6 +221,13 @@ export class MapComponent implements OnInit {
     this.placeCoordinate(175, 268, "hallway6Pano");
 
   }
+  
+  public createTolstoiBasementPoints() {
+    this.placeCoordinate(256, 367, "stairsPano");
+    this.placeCoordinate(256, 300, "hallwayPano");
+   
+  }
+
 
 
   // Places a clickable dot on the minimap

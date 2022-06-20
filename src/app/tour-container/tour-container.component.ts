@@ -113,6 +113,11 @@ export class TourContainerComponent implements OnInit {
       case 3:
         floorNav = '/tolstoi3';
         break;
+      case 4:
+        floorNav = '/tolstoi0';
+        startingRoom = 'enterancePano';
+        break;
+      
     }
     this.router.navigate([floorNav], { queryParams: {
         startingRoom: startingRoom,

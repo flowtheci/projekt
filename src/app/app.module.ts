@@ -17,6 +17,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { TourContainerComponent } from './tour-container/tour-container.component';
 import { MapComponent } from './map/map.component';
 import { RoomNavigationService } from './room-navigation.service';
+import { TolstoiBasementComponent } from './tolstoi-basement/tolstoi-basement.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { RoomNavigationService } from './room-navigation.service';
     TolstoiFirstFloorComponent,
     TolstoiSecondFloorComponent,
     TolstoiThirdFloorComponent,
+    TolstoiBasementComponent,
     UiComponent,
     TourContainerComponent,
     MapComponent

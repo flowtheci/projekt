@@ -11,7 +11,7 @@
 <div class="floor-container floor" [@inOutAnimation] id="floor-container" *ngIf="isFloorPanelOpen">
   <h1 class="floor-text">{{'common.chooseFloor' | translate}}</h1>
   <div>
-    <button mat-raised-button (click)="changeFloor(0)" class="floor-button" disabled>0</button>
+    <button mat-raised-button (click)="changeFloor(0)" class="floor-button">0</button>
     <button mat-raised-button (click)="changeFloor(1)" class="floor-button">1</button>
     <button mat-raised-button (click)="changeFloor(2)" class="floor-button">2</button>
     <button mat-raised-button (click)="changeFloor(3)" class="floor-button">3</button>

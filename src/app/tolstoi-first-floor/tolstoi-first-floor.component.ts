@@ -375,6 +375,14 @@ public loadFloorData() {
     this.changeFloor(2);
   });
   this.lobbyPano3.add(goUpFloor);
+  
+  // Floor change button
+  const goDownFloor = new PANOLENS.Infospot();
+  goDownFloor.position.set(1315.63, -2998.56, 3771.62);
+  goDownFloor.addEventListener('click', () => {
+    this.changeFloor(0);
+  });
+  this.lobbyPano4.add(goDownFloor);
 
 
 

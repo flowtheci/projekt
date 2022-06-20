@@ -8,6 +8,7 @@ const routes: Routes = [
   {path: 'tolstoi', component: TourContainerComponent, data: {floor: 1}},
   {path: 'tolstoi2', component: TourContainerComponent, data: {floor: 2}},
   {path: 'tolstoi3', component: TourContainerComponent, data: {floor: 3}},
+  {path: 'tolstoi0', component: TourContainerComponent, data: {floor: 0}},
   {path: '', component: UiComponent},
 ];
 
