@@ -104,7 +104,7 @@ export class MapComponent implements OnInit {
             this.currentFloorMapUrl = this.tolstoiThirdFloorMapUrl;
             this.createTolstoiThirdFloorPoints();
             break;
-          case 4:
+          case 0:
             this.currentFloorMapUrl = this.tolstoiBasementMapUrl;
             this.createTolstoiBasementPoints();
             break;
@@ -223,8 +223,8 @@ export class MapComponent implements OnInit {
   }
   
   public createTolstoiBasementPoints() {
-    this.placeCoordinate(256, 367, "stairsPano");
-    this.placeCoordinate(256, 300, "hallwayPano");
+    this.placeCoordinate(800, 205, "entrancePano");
+    this.placeCoordinate(450, 250, "basementPano");
    
   }
 

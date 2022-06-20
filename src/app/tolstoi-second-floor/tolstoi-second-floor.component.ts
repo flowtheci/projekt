@@ -339,19 +339,33 @@ export class TolstoiSecondFloorComponent implements OnInit, AfterViewInit, OnDes
     this.stairsPano2.link(this.secondStartPano, new THREE.Vector3(2745.30, -3672.10, 1984.35));
 
       // Floor change button
-    const goDownFloor = new PANOLENS.Infospot();
+    const goDownFloor = new PANOLENS.Infospot(300, '/assets/icons/elevator.png');
     goDownFloor.position.set(-4658.78, -1540.12, 950.85);
     goDownFloor.addEventListener('click', () => {
       this.changeFloor(1);
     });
     this.secondStartPano.add(goDownFloor);
 
-    const goUpFloor = new PANOLENS.Infospot();
-    goUpFloor.position.set(-2801.26, 709.25, 4071.47);
+    const goUpFloor = new PANOLENS.Infospot(300, '/assets/icons/elevator.png');
+    goUpFloor.position.set(-2628.26, -690.28, 4186.48);
     goUpFloor.addEventListener('click', () => {
       this.changeFloor(3);
     });
     this.stairsPano2.add(goUpFloor);
+
+    const goUpFloor2 = new PANOLENS.Infospot(300, '/assets/icons/elevator.png');
+    goUpFloor2.position.set(-224.41, 537.18, -4955.68);
+    goUpFloor2.addEventListener('click', () => {
+      this.changeFloor(4);
+    });
+    this.stairsPano1.add(goUpFloor2);
+
+    const goDownFloor2 = new PANOLENS.Infospot(300, '/assets/icons/elevator.png');
+    goDownFloor2.position.set(3501.26, -2871.30, 2108.29);
+    goDownFloor2.addEventListener('click', () => {
+      this.changeFloor(6);
+    });
+    this.roomPano2.add(goDownFloor2);
 
 
     window.dispatchEvent(new Event('resize'));

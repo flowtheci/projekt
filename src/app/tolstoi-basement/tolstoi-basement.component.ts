@@ -86,19 +86,20 @@ public loadFloorData() {
   
   
   // Entrance door view
-  this.entrancePano.link(this.basementPano, new THREE.Vector3(-4579.29, -1348.64, -1471.43));
+  this.entrancePano.link(this.basementPano, new THREE.Vector3(3030.67, -3947.14, 419.42));
+  this.basementPano.link(this.entrancePano, new THREE.Vector3(-2502.38, -800.33, 4250.98));
 
   // Floor change button
-  const goUpFloor = new PANOLENS.Infospot();
-  goUpFloor.position.set(3261.29, -113.31, 3778.32);
+  const goUpFloor = new PANOLENS.Infospot(300, '/assets/icons/elevator.png');
+  goUpFloor.position.set(-4959.32, 401.28, -461.82);
   goUpFloor.addEventListener('click', () => {
     this.changeFloor(1);
   });
   this.entrancePano.add(goUpFloor);
 
   var lookAtPositions = [
-    new THREE.Vector3(-4951.39, -90.62, -633.92 ),//0, entrancePano
-    new THREE.Vector3(-3747.27, 621.81, -3239.13 ),//1 entranceStreet
+    new THREE.Vector3(4438.96, -2278.17, 218.82 ),
+    new THREE.Vector3(4752.31, -292.03, 1511.91 ),
   
   
     ];
@@ -107,7 +108,7 @@ public loadFloorData() {
   this.entrancePano.addEventListener('enter-fade-start', () => {
     console.log('entrancePano entered');
     this.setRoom('entrancePano');
-    this.viewer.tweenControlCenter( lookAtPositions[0], 6000 );
+    this.viewer.tweenControlCenter( lookAtPositions[0], 0 );
   })
   this.basementPano.addEventListener('enter-fade-start', () => {
     console.log('basementPano entered')

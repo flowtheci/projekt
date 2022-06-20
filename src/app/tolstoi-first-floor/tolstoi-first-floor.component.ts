@@ -369,15 +369,22 @@ public loadFloorData() {
   this.room117.link(this.entranceStreet, new THREE.Vector3(4676.81, -525.41, -1662.65));
 
   // Floor change button
-  const goUpFloor = new PANOLENS.Infospot();
+  const goUpFloor = new PANOLENS.Infospot(300, '/assets/icons/elevator.png');
   goUpFloor.position.set(3261.29, -113.31, 3778.32);
   goUpFloor.addEventListener('click', () => {
     this.changeFloor(2);
   });
   this.lobbyPano3.add(goUpFloor);
+
+  const goUpFloor2 = new PANOLENS.Infospot(300, '/assets/icons/elevator.png');
+  goUpFloor2.position.set(-2220.16, 362.15, 4456.77);
+  goUpFloor2.addEventListener('click', () => {
+    this.changeFloor(7);
+  });
+  this.room118.add(goUpFloor2);
   
   // Floor change button
-  const goDownFloor = new PANOLENS.Infospot();
+  const goDownFloor = new PANOLENS.Infospot(300, '/assets/icons/elevator.png');
   goDownFloor.position.set(1315.63, -2998.56, 3771.62);
   goDownFloor.addEventListener('click', () => {
     this.changeFloor(0);
