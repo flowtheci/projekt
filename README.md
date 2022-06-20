@@ -25,7 +25,7 @@ git clone -–branch angular https://github.com/flowtheci/projekt.git
 
 **Tõmmake alla node.js ja visual code studio.**
 
-**Pärast seda liigu sinna, kuhu projekti kloonisid. Seejärel peab installima paar asja:**
+**Pärast seda liigu Command Prompt'is sinna, kuhu projekti kloonisid. Seejärel peab installima paar asja:**
 
 npm install -g @angular/cli
 
