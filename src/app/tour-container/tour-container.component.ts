@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { TolstoiFirstFloorComponent } from '../tolstoi-first-floor/tolstoi-first-floor.component';
 import { RoomNavigationService } from '../room-navigation.service';
 import * as THREE from '../../lib/three.js';
 import Panolens from '../../lib/panolens';
-import {Location} from "@angular/common";
+import {DOCUMENT, Location} from "@angular/common";
 const TWEEN = Panolens.TWEEN;
 const PANOLENS = Panolens.PANOLENS;
 
@@ -46,7 +46,8 @@ export class TourContainerComponent implements OnInit {
     private route: ActivatedRoute,
     private roomService: RoomNavigationService,
     private router: Router,
-    private location: Location
+    private location: Location,
+    @Inject(DOCUMENT) private document: any
   ) {
     this.roomService.currentMessage.subscribe(message =>  {
       console.log("Update received by tour container, attempting to navigate to " + message);
@@ -96,17 +97,17 @@ export class TourContainerComponent implements OnInit {
 
   /* Close fullscreen */
   closeFullscreen() {
-    if (this.elem.exitFullscreen) {
-      this.elem.exitFullscreen();
-    } else if (this.elem.mozCancelFullScreen) {
+    if (this.document.exitFullscreen) {
+      this.document.exitFullscreen();
+    } else if (this.document.mozCancelFullScreen) {
       /* Firefox */
-      this.elem.mozCancelFullScreen();
-    } else if (this.elem.webkitExitFullscreen) {
+      this.document.mozCancelFullScreen();
+    } else if (this.document.webkitExitFullscreen) {
       /* Chrome, Safari and Opera */
-      this.elem.webkitExitFullscreen();
-    } else if (this.elem.msExitFullscreen) {
+      this.document.webkitExitFullscreen();
+    } else if (this.document.msExitFullscreen) {
       /* IE/Edge */
-      this.elem.msExitFullscreen();
+      this.document.msExitFullscreen();
     }
   }
 
