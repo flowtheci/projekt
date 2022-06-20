@@ -43,8 +43,8 @@
     <app-map [currentBuilding]="building" [currentFloor]="currentFloor" (floorChange)="changeFloor($event)" [selectedRoom]="room"></app-map>
 </div>
 <div [ngSwitch]="currentFloor">
+  <app-tolstoi-basement *ngSwitchCase="0" [goToRoom]="roomToNavigateTo" (tourViewer)="getViewer($event)" (requestFloorChange)="changeFloor($event)" (roomMessage)="readRoomName($event)"></app-tolstoi-basement>
   <app-tolstoi-first-floor *ngSwitchCase="1" class="ff" [goToRoom]="roomToNavigateTo" (tourViewer)="getViewer($event)" (requestFloorChange)="changeFloor($event)" (roomMessage)="readRoomName($event)"></app-tolstoi-first-floor>
   <app-tolstoi-second-floor *ngSwitchCase="2" [goToRoom]="roomToNavigateTo" (tourViewer)="getViewer($event)" (requestFloorChange)="changeFloor($event)" (roomMessage)="readRoomName($event)"></app-tolstoi-second-floor>
   <app-tolstoi-third-floor *ngSwitchCase="3" [goToRoom]="roomToNavigateTo" (tourViewer)="getViewer($event)" (requestFloorChange)="changeFloor($event)" (roomMessage)="readRoomName($event)"></app-tolstoi-third-floor>
-  <app-tolstoi-basement *ngSwitchCase="4" [goToRoom]="roomToNavigateTo" (tourViewer)="getViewer($event)" (requestFloorChange)="changeFloor($event)" (roomMessage)="readRoomName($event)"></app-tolstoi-basement>
 </div>
