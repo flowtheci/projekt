@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HostListener } from '@angular/core';
 import {TranslateService} from "@ngx-translate/core";
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-ui',
@@ -9,10 +10,10 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   styleUrls: ['./ui.component.scss'],
   animations: [
     trigger(
-      'inOutAnimation', 
+      'inOutAnimation',
       [
         transition(
-          ':enter', 
+          ':enter',
           [
             style({ opacity: 0 }),
             animate('0.5s 0.5s ease-in',
@@ -20,7 +21,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
           ]
         ),
         transition(
-          ':leave', 
+          ':leave',
           [
             style({ opacity: 1 }),
             animate('0.5s ease-out',
@@ -35,7 +36,7 @@ export class UiComponent implements OnInit {
 
   showBuildingPicker = false;
 
-  constructor(private translate: TranslateService) { }
+  constructor(private translate: TranslateService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     let language = localStorage.getItem('language');
@@ -43,6 +44,12 @@ export class UiComponent implements OnInit {
       this.translate.use(language);
       console.log("Using localstorage lang preference: " + language);
     }
+  }
+
+  async showNoBuilding() {
+    this.translate.stream('common.buildingMissingText').subscribe((res: string) => {
+      this.toastr.warning(res);
+    });
   }
 
   // Creates an event in browser history when user enters virtual tour menu, and shows the building picker
@@ -59,7 +66,7 @@ export class UiComponent implements OnInit {
       this.translate.use('en');
       localStorage.setItem('language', 'en');
     }
-    
+
 
   }
 
@@ -68,7 +75,7 @@ export class UiComponent implements OnInit {
   onPopState(_event: any) {
     this.showBuildingPicker = !this.showBuildingPicker;
   }
-  
-  
+
+
 
 }

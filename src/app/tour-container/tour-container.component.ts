@@ -1,11 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import {Component, Inject, OnInit, ViewChild} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { TolstoiFirstFloorComponent } from '../tolstoi-first-floor/tolstoi-first-floor.component';
 import { RoomNavigationService } from '../room-navigation.service';
 import * as THREE from '../../lib/three.js';
 import Panolens from '../../lib/panolens';
-import {Location} from "@angular/common";
+import {DOCUMENT, Location} from "@angular/common";
 const TWEEN = Panolens.TWEEN;
 const PANOLENS = Panolens.PANOLENS;
 
@@ -39,12 +39,15 @@ export class TourContainerComponent implements OnInit {
   roomToNavigateTo: string = '';
   currentFloor = 1;
   viewer: any;
+  elem: any;
+  isFullscreen = false;
 
   constructor(
     private route: ActivatedRoute,
     private roomService: RoomNavigationService,
     private router: Router,
-    private location: Location
+    private location: Location,
+    @Inject(DOCUMENT) private document: any
   ) {
     this.roomService.currentMessage.subscribe(message =>  {
       console.log("Update received by tour container, attempting to navigate to " + message);
@@ -60,6 +63,7 @@ export class TourContainerComponent implements OnInit {
       console.log('Entered building ' + this.building);
     });
     if (this.viewer == null) console.warn("no viewer found on init");
+    this.elem = document.documentElement;
   }
 
 
@@ -69,6 +73,42 @@ export class TourContainerComponent implements OnInit {
 
   public readRoomName(event: any) {
     this.room = event;
+  }
+
+  toggleFullScreen() {
+    this.isFullscreen = !this.isFullscreen;
+    this.isFullscreen ? this.openFullscreen() : this.closeFullscreen();
+  }
+
+  openFullscreen() {
+    if (this.elem.requestFullscreen) {
+      this.elem.requestFullscreen();
+    } else if (this.elem.mozRequestFullScreen) {
+      /* Firefox */
+      this.elem.mozRequestFullScreen();
+    } else if (this.elem.webkitRequestFullscreen) {
+      /* Chrome, Safari and Opera */
+      this.elem.webkitRequestFullscreen();
+    } else if (this.elem.msRequestFullscreen) {
+      /* IE/Edge */
+      this.elem.msRequestFullscreen();
+    }
+  }
+
+  /* Close fullscreen */
+  closeFullscreen() {
+    if (this.document.exitFullscreen) {
+      this.document.exitFullscreen();
+    } else if (this.document.mozCancelFullScreen) {
+      /* Firefox */
+      this.document.mozCancelFullScreen();
+    } else if (this.document.webkitExitFullscreen) {
+      /* Chrome, Safari and Opera */
+      this.document.webkitExitFullscreen();
+    } else if (this.document.msExitFullscreen) {
+      /* IE/Edge */
+      this.document.msExitFullscreen();
+    }
   }
 
   getViewer(event: any) {

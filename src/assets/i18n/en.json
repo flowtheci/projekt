@@ -4,7 +4,9 @@
         "back": "Back",
         "exitVirtualTour": "Exit tour",
         "currentLanguage": "English",
-        "chooseFloor": "Choose floor:"
+        "chooseFloor": "Choose floor:",
+        "buildingMissing": "Building missing",
+        "buildingMissingText": "This building has not yet been added to the virtual tour."
     },
     "menu": {
         "enrollment": "Enrollment",
