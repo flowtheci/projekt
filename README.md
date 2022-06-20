@@ -1,7 +1,7 @@
 # Kõrgem Kunstikool Pallase virtuaaltuur
-![VirtuaaltuuriPilt1korrus](https://user-images.githubusercontent.com/90316775/174598267-884adfb2-3042-4935-888e-553d76969a7a.png)
-
 ![Avalehe_fail](https://user-images.githubusercontent.com/90316775/174603622-4f81f526-9a7d-4699-87ff-3ccaee6b8be8.png)
+
+![VirtuaaltuuriPilt1korrus](https://user-images.githubusercontent.com/90316775/174598267-884adfb2-3042-4935-888e-553d76969a7a.png)
 
 ## Meeskonna liikmed
 - Ervin Puust 
