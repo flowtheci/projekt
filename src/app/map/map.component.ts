@@ -221,11 +221,11 @@ export class MapComponent implements OnInit {
     this.placeCoordinate(175, 268, "hallway6Pano");
 
   }
-  
+
   public createTolstoiBasementPoints() {
     this.placeCoordinate(800, 205, "entrancePano");
     this.placeCoordinate(450, 250, "basementPano");
-   
+
   }
 
 
@@ -260,6 +260,7 @@ export class MapComponent implements OnInit {
     const newImage = document.createElement("img");
     newImage.setAttribute('src', this.addedPoints == 0 ? '/assets/dot-here.png' : '/assets/dot.png');
     newImage.classList.add("dot");
+    if (this.addedPoints == 0) newImage.classList.add('active-dot');
     newImage.style.position = "absolute";
     newImage.style.cursor = "pointer";
     newImage.style.left = l + "px";
@@ -277,9 +278,13 @@ export class MapComponent implements OnInit {
 
   public selectRoomById(id: string) {
     const selectedElement = document.getElementById(id);
-    const previousSelectedElement = document.getElementsByClassName('active-dot').item(0);
-
-    if (previousSelectedElement) {
+    const oldSelectedElements = document.getElementsByClassName('active-dot');
+    for (let i = 0; i < oldSelectedElements.length; i++) {
+      let previousSelectedElement = oldSelectedElements.item(i);
+      if (previousSelectedElement == null) {
+        console.warn("Map red dot could not be removed since the element returned null");
+        continue;
+      }
       previousSelectedElement.setAttribute('src', '/assets/dot.png');
       previousSelectedElement.classList.remove('active-dot');
     }

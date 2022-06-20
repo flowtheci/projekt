@@ -66,8 +66,22 @@ export class UiComponent implements OnInit {
       this.translate.use('en');
       localStorage.setItem('language', 'en');
     }
+  }
 
+  enrollmentClicked() {
+    if (this.translate.currentLang == 'en') {
+      document.location.href = 'https://pallasart.ee/en/admission/';
+    } else {
+      document.location.href = 'https://pallasart.ee/sisseastumine/';
+    }
+  }
 
+  studiesClicked() {
+    if (this.translate.currentLang == 'en') {
+      document.location.href = 'https://pallasart.ee/en/studies/';
+    } else {
+      document.location.href = 'https://pallasart.ee/oppimine/';
+    }
   }
 
   // Creates an event listener which listens for every browser history change, and toggles the building picker menu when triggered
