@@ -15,7 +15,7 @@ Antud projekt annab võimaluse külastada Kõrgem Kunstikool Pallast ilma kodust
 ## Kasutatud tehnoloogiad
 - Visual Code Studio (version 1.68)
 - node.js (version 18.4.0)
-- Angular (Version 14.0.0)
+- Angular (version 14.0.0)
 
 ## Installeerimisjuhend
 **Kõige pealt tuleb avada Command Prompt ja kloonida antud projekt:**
