@@ -42,6 +42,7 @@
 <div class="map-container">
     <app-map [currentBuilding]="building" [currentFloor]="currentFloor" (floorChange)="changeFloor($event)" [selectedRoom]="room"></app-map>
 </div>
+<mat-icon (click)="toggleFullScreen()" class="fullscreen-icon">fullscreen</mat-icon>
 <div [ngSwitch]="currentFloor">
   <app-tolstoi-basement *ngSwitchCase="0" [goToRoom]="roomToNavigateTo" (tourViewer)="getViewer($event)" (requestFloorChange)="changeFloor($event)" (roomMessage)="readRoomName($event)"></app-tolstoi-basement>
   <app-tolstoi-first-floor *ngSwitchCase="1" class="ff" [goToRoom]="roomToNavigateTo" (tourViewer)="getViewer($event)" (requestFloorChange)="changeFloor($event)" (roomMessage)="readRoomName($event)"></app-tolstoi-first-floor>

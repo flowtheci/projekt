@@ -18,6 +18,7 @@ import { TourContainerComponent } from './tour-container/tour-container.componen
 import { MapComponent } from './map/map.component';
 import { RoomNavigationService } from './room-navigation.service';
 import { TolstoiBasementComponent } from './tolstoi-basement/tolstoi-basement.component';
+import {ToastrModule} from "ngx-toastr";
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { TolstoiBasementComponent } from './tolstoi-basement/tolstoi-basement.co
     MatButtonModule,
     MatCardModule,
     BrowserModule,
+    ToastrModule.forRoot(),
         HttpClientModule,
         TranslateModule.forRoot({
             loader: {
@@ -45,7 +47,7 @@ import { TolstoiBasementComponent } from './tolstoi-basement/tolstoi-basement.co
                 deps: [HttpClient]
             }
         }),
-    MatIconModule,  
+    MatIconModule,
     MatDividerModule,
   ],
   providers: [RoomNavigationService],

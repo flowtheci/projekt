@@ -4,7 +4,9 @@
         "back": "Tagasi",
         "exitVirtualTour": "Välju tuurist",
         "currentLanguage": "Eesti",
-        "chooseFloor": "Vali korrus:"
+        "chooseFloor": "Vali korrus:",
+        "buildingMissing": "Maja puudub",
+        "buildingMissingText": "Antud maja pole veel virtuaaltuuri lisatud."
     },
     "menu": {
         "enrollment": "Sisseastumine",

@@ -39,6 +39,8 @@ export class TourContainerComponent implements OnInit {
   roomToNavigateTo: string = '';
   currentFloor = 1;
   viewer: any;
+  elem: any;
+  isFullscreen = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -60,6 +62,7 @@ export class TourContainerComponent implements OnInit {
       console.log('Entered building ' + this.building);
     });
     if (this.viewer == null) console.warn("no viewer found on init");
+    this.elem = document.documentElement;
   }
 
 
@@ -69,6 +72,42 @@ export class TourContainerComponent implements OnInit {
 
   public readRoomName(event: any) {
     this.room = event;
+  }
+
+  toggleFullScreen() {
+    this.isFullscreen = !this.isFullscreen;
+    this.isFullscreen ? this.openFullscreen() : this.closeFullscreen();
+  }
+
+  openFullscreen() {
+    if (this.elem.requestFullscreen) {
+      this.elem.requestFullscreen();
+    } else if (this.elem.mozRequestFullScreen) {
+      /* Firefox */
+      this.elem.mozRequestFullScreen();
+    } else if (this.elem.webkitRequestFullscreen) {
+      /* Chrome, Safari and Opera */
+      this.elem.webkitRequestFullscreen();
+    } else if (this.elem.msRequestFullscreen) {
+      /* IE/Edge */
+      this.elem.msRequestFullscreen();
+    }
+  }
+
+  /* Close fullscreen */
+  closeFullscreen() {
+    if (this.elem.exitFullscreen) {
+      this.elem.exitFullscreen();
+    } else if (this.elem.mozCancelFullScreen) {
+      /* Firefox */
+      this.elem.mozCancelFullScreen();
+    } else if (this.elem.webkitExitFullscreen) {
+      /* Chrome, Safari and Opera */
+      this.elem.webkitExitFullscreen();
+    } else if (this.elem.msExitFullscreen) {
+      /* IE/Edge */
+      this.elem.msExitFullscreen();
+    }
   }
 
   getViewer(event: any) {
