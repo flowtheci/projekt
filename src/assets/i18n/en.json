@@ -3,7 +3,8 @@
         "enter": "Enter",
         "back": "Back",
         "exitVirtualTour": "Exit tour",
-        "currentLanguage": "English"
+        "currentLanguage": "English",
+        "chooseFloor": "Choose floor:"
     },
     "menu": {
         "enrollment": "Enrollment",

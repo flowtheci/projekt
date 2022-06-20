@@ -76,7 +76,11 @@ export class TourContainerComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       console.error('Received params');
       console.error(params);
-      this.showControls = params['hideControls'] == true;
+      if (params['hideControls'] != null) {
+        this.showControls = params['hideControls'] == true;
+      } else {
+        this.showControls = true;
+      }
       this.roomService.changeRoom(params['startingRoom']);
       if (params['floor']) {
         this.location.replaceState(

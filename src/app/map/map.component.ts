@@ -52,13 +52,19 @@ export class MapComponent implements OnInit {
   @Input() set currentFloor(floor: number) {
     console.error('NEW FLOOR ' + floor);
     this.floor = floor;
-    this.setupCurrentFloorMap();;
+
+    setTimeout(() =>
+      {
+        this.setupCurrentFloorMap()
+      },
+      1000);
   }
   @Input() set selectedRoom(room: string) {
     this.selectRoomById(room);
   }
   @Output() floorChange = new EventEmitter<number>();
 
+  openCounter = 0;
   floor = 1;
   addedPoints = 0;
   isMapPanelOpen = false;
@@ -66,17 +72,14 @@ export class MapComponent implements OnInit {
   tolstoiFirstFloorMapUrl: string = './assets/Tolstoi/1.korrus/1korruskaart.jpg';
   tolstoiSecondFloorMapUrl: string = './assets/Tolstoi/2korrus/2korruskaart.jpg';
   tolstoiThirdFloorMapUrl: string = './assets/Tolstoi/3.korrus/3korrusekaartt.jpg';
+  resetMap = false;
 
   constructor(private route: ActivatedRoute, private roomService: RoomNavigationService) {
   }
 
   ngOnInit(): void {
     console.log('Entered building ' + this.currentBuilding);
-    this.setupCurrentFloorMap();
 
-    $('.dot').on('click', (evt) => {
-      this.selectRoom(evt);
-    });
     $(".map-image").on("click", function(event) {
       var x = event.pageX - this.offsetLeft - 15;
       var y = event.pageY - this.offsetTop - 65;
@@ -85,6 +88,7 @@ export class MapComponent implements OnInit {
   }
 
   public setupCurrentFloorMap(): void {
+    console.log("Creating map of floor " + this.floor);
     console.log(this.currentBuilding + this.floor)
         switch (this.floor) {
           case 1:
@@ -100,6 +104,9 @@ export class MapComponent implements OnInit {
             this.createTolstoiThirdFloorPoints();
             break;
         }
+    $('.dot').on('click', (evt) => {
+      this.selectRoom(evt);
+    });
   }
 
   get currentFloorMap(): string {
@@ -107,6 +114,7 @@ export class MapComponent implements OnInit {
   }
 
   toggleMapPanel() {
+    this.openCounter++;
     this.isFloorPanelOpen = false;
     this.isMapPanelOpen = !this.isMapPanelOpen;
   }
@@ -209,11 +217,12 @@ export class MapComponent implements OnInit {
 
   }
 
+
   // Places a clickable dot on the minimap
   // First added dot is shown as starting point by default
   public placeCoordinate(offX: number, offY: number, roomName: string): void {
 
-    const image = document.getElementById('map-image');
+    const image = document.getElementById('selector-map-image');
     const margin = 0;
 
     if (image == null) {

@@ -3,7 +3,8 @@
         "enter": "Sisene",
         "back": "Tagasi",
         "exitVirtualTour": "Välju tuurist",
-        "currentLanguage": "Eesti"
+        "currentLanguage": "Eesti",
+        "chooseFloor": "Vali korrus:"
     },
     "menu": {
         "enrollment": "Sisseastumine",

@@ -1,5 +1,5 @@
-<div [style.display]="isMapPanelOpen ? 'block' : 'none'" [@inOutAnimation] id="map-container" class="map-container">
-  <img class="map-image" id="map-image" [src]="currentFloorMap" alt="Map of the current floor.">
+<div *ngIf="!resetMap" [style.display]="isMapPanelOpen ? 'block' : 'none'" [@inOutAnimation] id="map-container" class="map-container">
+  <img class="map-image" id="selector-map-image" [src]="currentFloorMap" alt="Map of the current floor.">
   <mat-icon (click)="toggleMapPanel()" class="close-icon">close</mat-icon>
 </div>
 <div class="button-container" [@showMapIcon] *ngIf="!isMapPanelOpen">
@@ -9,7 +9,7 @@
   <mat-icon (click)="toggleFloorPanel()" class="floor-icon">elevator</mat-icon>
 </div>
 <div class="floor-container floor" [@inOutAnimation] id="floor-container" *ngIf="isFloorPanelOpen">
-  <h1 class="floor-text">Choose floor:</h1>
+  <h1 class="floor-text">{{'common.chooseFloor' | translate}}</h1>
   <div>
     <button mat-raised-button (click)="changeFloor(0)" class="floor-button" disabled>0</button>
     <button mat-raised-button (click)="changeFloor(1)" class="floor-button">1</button>
