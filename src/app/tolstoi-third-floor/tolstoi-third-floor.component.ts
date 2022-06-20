@@ -294,12 +294,7 @@ this.workroom6Pano.link(this.workroom5Pano, new THREE.Vector3(4478.47, -421.70, 
     });
     this.hallway5Pano.add(goDownFloor2);
 
-    const goDownFloor3 = new PANOLENS.Infospot(300, '/assets/icons/elevator.png');
-    goDownFloor3.position.set(3501.26, -2871.30, 2108.29);
-    goDownFloor3.addEventListener('click', () => {
-      this.changeFloor(6);
-    });
-    this.hallway5Pano.add(goDownFloor3);
+  
 
 window.dispatchEvent(new Event('resize'));
   }

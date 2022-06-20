@@ -156,6 +156,7 @@ export class TourContainerComponent implements OnInit {
         break;
       case 3:
         floorNav = '/tolstoi3';
+        startingRoom = 'stairsPano';
         break;
       case 4:
         floorNav = '/tolstoi3';
