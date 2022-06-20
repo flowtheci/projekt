@@ -1,27 +1,41 @@
-# Virtuaaltuur
+# Kõrgem Kunstikool Pallase virtuaaltuur
+![VirtuaaltuuriPilt1korrus](https://user-images.githubusercontent.com/90316775/174598267-884adfb2-3042-4935-888e-553d76969a7a.png)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.0.1.
+![Avalehe_fail](https://user-images.githubusercontent.com/90316775/174603622-4f81f526-9a7d-4699-87ff-3ccaee6b8be8.png)
 
-## Development server
+## Meeskonna liikmed
+- Ervin Puust 
+- Kati Põdra 
+- Kevin Erik Iin 
+- Ekke Rasmus Kiisler
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Eesmärk
+Projekti eesmärgiks on luua virtuaaltuur Kõrgem Kunstikool Pallasest. 
+Antud projekt annab võimaluse külastada Kõrgem Kunstikool Pallast ilma kodust lahkumata.
 
-## Code scaffolding
+## Kasutatud tehnoloogiad
+- Visual Code Studio (version 1.68)
+- node.js (version 18.4.0)
+- Angular (version 14.0.0)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Installeerimisjuhend
+**Kõige pealt tuleb avada Command Prompt ja kloonida antud projekt:**
 
-## Build
+git clone -–branch angular https://github.com/flowtheci/projekt.git
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+**Tõmmake alla node.js ja visual code studio.**
 
-## Running unit tests
+**Pärast seda liigu sinna, kuhu projekti kloonisid. Seejärel peab installima paar asja:**
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+npm install -g @angular/cli
 
-## Running end-to-end tests
+npm install serve
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+**Ja seejärel kirjutage:**
 
-## Further help
+ng serve
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+**Pärast seda peaksite lehel http://localhost:4200/ projekti nägema.**
+
+## Litsents
+https://github.com/flowtheci/projekt/blob/master/MIT%20License.txt
