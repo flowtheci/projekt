@@ -19,7 +19,7 @@ export class TolstoiFirstFloorComponent implements OnInit, AfterViewInit, OnDest
     if (value == null || value == '') return;
     console.log("Navigation event received, attempting navigation...");
     this.navigateToRoom(value);
- 
+
  }
   @Output() roomMessage = new EventEmitter<string>();
   @Output() tourViewer = new EventEmitter<any>;
@@ -202,7 +202,7 @@ public loadFloorData() {
   this.viewer.add(this.room111Pano1);
   this.viewer.add(this.room111Pano2);
   this.viewer.add(this.entranceStreet);
-  
+
   // Entrance door view
   this.entrancePano.link(this.lobbyPano1, new THREE.Vector3(-4579.29, -1348.64, -1471.43));
 
@@ -382,7 +382,7 @@ public loadFloorData() {
     this.changeFloor(7);
   });
   this.room118.add(goUpFloor2);
-  
+
   // Floor change button
   const goDownFloor = new PANOLENS.Infospot(300, '/assets/icons/elevator.png');
   goDownFloor.position.set(1315.63, -2998.56, 3771.62);
@@ -390,7 +390,6 @@ public loadFloorData() {
     this.changeFloor(0);
   });
   this.lobbyPano4.add(goDownFloor);
-
 
 
 
@@ -439,7 +438,7 @@ public loadFloorData() {
     new THREE.Vector3(4972.69, -269.94, -318.82 ),//40 room111pano1
     new THREE.Vector3(3392.64, 289.56, -3652.67 ),//41 room111pano2
     new THREE.Vector3(4217.34, 135.92, -2663.88 ),//42 room117
-  
+
     ];
 
 

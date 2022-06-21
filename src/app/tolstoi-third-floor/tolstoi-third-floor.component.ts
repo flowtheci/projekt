@@ -87,6 +87,7 @@ export class TolstoiThirdFloorComponent implements OnInit, AfterViewInit, OnDest
   viewer = new PANOLENS.Viewer({
     output: 'console',
     momentum: false,
+    controlButtons: ['setting'],
 });
 
 public disposePanoramaContainer(){
@@ -294,7 +295,7 @@ this.workroom6Pano.link(this.workroom5Pano, new THREE.Vector3(4478.47, -421.70, 
     });
     this.hallway5Pano.add(goDownFloor2);
 
-  
+
 
 window.dispatchEvent(new Event('resize'));
   }
